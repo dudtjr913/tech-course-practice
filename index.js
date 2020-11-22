@@ -28,14 +28,22 @@ const isUserInputCorrect = () => {
     alert("3자리의 숫자를 입력해주세요.");
   } else if (new Set(input.value).size !== input.value.length) {
     alert("겹치지 않게 숫자를 입력해주세요.");
+  } else {
+    return true;
+  }
+  return false;
+};
+
+const compareUserInput = (threeBall) => (e) => {
+  e.preventDefault();
+  if (isUserInputCorrect()) {
   }
   input.value = "";
 };
 
-const compareUserInput = (e) => {
-  e.preventDefault();
-  isUserInputCorrect();
+const startGame = () => {
+  const threeBall = makeThreeBall();
+  form.addEventListener("submit", compareUserInput(threeBall));
 };
 
-makeThreeBall();
-form.addEventListener("submit", compareUserInput);
+startGame();
