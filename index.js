@@ -25,14 +25,19 @@ const makeThreeBall = () => {
   return threeBall;
 };
 
-const isRestartGame = () => {
+const restartGame = () => {
+  finishDiv.classList.remove("finish");
+  finishDiv.textContent = "숫자를 입력해주세요 :";
+  startGame();
+};
+
+const isUserInputCorrect = () => {
   if (input.value.match(/[^1-9]/g)) {
     alert("올바른 값이 아닙니다.");
-  } else if (
-    input.value.length === 3 ||
-    new Set(input.value).size !== input.value.length
-  ) {
-    alert("1자리의 숫자를 입력해주세요.");
+  } else if (input.value.length !== 3) {
+    alert("3자리의 숫자를 입력해주세요.");
+  } else if (new Set(input.value).size !== input.value.length) {
+    alert("숫자가 중복됩니다.");
   } else {
     return true;
   }
@@ -40,12 +45,13 @@ const isRestartGame = () => {
   return false;
 };
 
-const isUserInputCorrect = () => {
-  if (input.value === 1) {
+const isRestartGame = () => {
+  if (input.value === "1") {
     return restartGame();
-  } else if (input.value === 2) {
+  } else if (input.value === "2") {
     return finishGame();
   } else {
+    alert("올바른 숫자를 입력해주세요.");
     return false;
   }
 };
@@ -61,7 +67,7 @@ const compareUserInput = (threeBall) => (e) => {
     threeBall.forEach((v, i) => answerConfirm(v, i, result));
     showOnUserResult(result);
   } else if (finishDiv.className === "finish") {
-    isRestartGame();
+    return isRestartGame();
   }
   console.log(threeBall);
   input.value = "";
