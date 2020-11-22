@@ -2,9 +2,11 @@
 
 const form = document.body.querySelector("form");
 const input = form.querySelector("input");
+const resultDiv = document.body.querySelector(".result");
 
 const randomBallSelect = (numberLength) => {
   const randomNumber = Math.floor(Math.random() * numberLength);
+
   return randomNumber;
 };
 
@@ -18,6 +20,7 @@ const makeThreeBall = () => {
     const pushBall = waitingBall.splice(randomBall, 1);
     threeBall.push(...pushBall);
   }
+
   return threeBall;
 };
 
@@ -31,6 +34,7 @@ const isUserInputCorrect = () => {
   } else {
     return true;
   }
+
   return false;
 };
 
@@ -44,6 +48,8 @@ const compareUserInput = (threeBall) => (e) => {
   if (isUserInputCorrect()) {
     threeBall.forEach((v, i) => answerConfirm(v, i, result));
   }
+  showOnUserResult(result);
+
   input.value = "";
 };
 
@@ -56,6 +62,24 @@ const answerConfirm = (answerNumber, answerNumberIndex, result) => {
   } else {
     result.out++;
   }
+};
+
+const showOnUserResult = (result) => {
+  resultDiv.innerText = "";
+  if (result.strike) {
+    resultDiv.innerText = ` ${result.strike}스트라이크`;
+  }
+  if (result.ball) {
+    resultDiv.innerText += ` ${result.ball}볼`;
+  }
+  if (result.out) {
+    if (result.out === 3) {
+      return (resultDiv.innerText = "Nothing");
+    }
+    resultDiv.innerText += ` ${result.out}아웃`;
+  }
+
+  return resultDiv;
 };
 
 const startGame = () => {
