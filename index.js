@@ -36,9 +36,26 @@ const isUserInputCorrect = () => {
 
 const compareUserInput = (threeBall) => (e) => {
   e.preventDefault();
+  const result = {
+    strike: 0,
+    ball: 0,
+    out: 0,
+  };
   if (isUserInputCorrect()) {
+    threeBall.forEach((v, i) => answerConfirm(v, i, result));
   }
   input.value = "";
+};
+
+const answerConfirm = (answerNumber, answerNumberIndex, result) => {
+  const userInputNumberIndex = input.value.indexOf(answerNumber);
+  if (userInputNumberIndex !== -1) {
+    answerNumberIndex === userInputNumberIndex
+      ? result.strike++
+      : result.ball++;
+  } else {
+    result.out++;
+  }
 };
 
 const startGame = () => {
