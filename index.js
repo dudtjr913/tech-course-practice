@@ -2,6 +2,7 @@
 
 const form = document.body.querySelector("form");
 const input = form.querySelector("input");
+const finishDiv = form.querySelector("div");
 const resultDiv = document.body.querySelector(".result");
 
 const randomBallSelect = (numberLength) => {
@@ -24,18 +25,29 @@ const makeThreeBall = () => {
   return threeBall;
 };
 
-const isUserInputCorrect = () => {
+const isRestartGame = () => {
   if (input.value.match(/[^1-9]/g)) {
     alert("올바른 값이 아닙니다.");
-  } else if (input.value.length !== 3) {
-    alert("3자리의 숫자를 입력해주세요.");
-  } else if (new Set(input.value).size !== input.value.length) {
-    alert("겹치지 않게 숫자를 입력해주세요.");
+  } else if (
+    input.value.length === 3 ||
+    new Set(input.value).size !== input.value.length
+  ) {
+    alert("1자리의 숫자를 입력해주세요.");
   } else {
     return true;
   }
 
   return false;
+};
+
+const isUserInputCorrect = () => {
+  if (input.value === 1) {
+    return restartGame();
+  } else if (input.value === 2) {
+    return finishGame();
+  } else {
+    return false;
+  }
 };
 
 const compareUserInput = (threeBall) => (e) => {
@@ -45,11 +57,13 @@ const compareUserInput = (threeBall) => (e) => {
     ball: 0,
     out: 0,
   };
-  if (isUserInputCorrect()) {
+  if (finishDiv.className !== "finish" && isUserInputCorrect()) {
     threeBall.forEach((v, i) => answerConfirm(v, i, result));
+    showOnUserResult(result);
+  } else if (finishDiv.className === "finish") {
+    isRestartGame();
   }
-  showOnUserResult(result);
-
+  console.log(threeBall);
   input.value = "";
 };
 
@@ -67,6 +81,9 @@ const answerConfirm = (answerNumber, answerNumberIndex, result) => {
 const showOnUserResult = (result) => {
   resultDiv.innerText = "";
   if (result.strike) {
+    if (result.strike === 3) {
+      return gameWin();
+    }
     resultDiv.innerText = ` ${result.strike}스트라이크`;
   }
   if (result.ball) {
@@ -80,6 +97,12 @@ const showOnUserResult = (result) => {
   }
 
   return resultDiv;
+};
+
+const gameWin = () => {
+  finishDiv.classList.add("finish");
+  finishDiv.innerText = `3개의 숫자를 모두 맞히셨습니다! 게임 종료
+    게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.`;
 };
 
 const startGame = () => {
