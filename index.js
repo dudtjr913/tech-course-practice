@@ -27,8 +27,9 @@ const makeThreeBall = () => {
 
 const restartGame = () => {
   finishDiv.classList.remove("finish");
-  finishDiv.textContent = "숫자를 입력해주세요 :";
-  startGame();
+  finishDiv.innerText = "숫자를 입력해주세요 :";
+
+  return startGame();
 };
 
 const isUserInputCorrect = () => {
@@ -56,7 +57,7 @@ const isRestartGame = () => {
   }
 };
 
-const compareUserInput = (threeBall) => (e) => {
+const compareUserInput = (e, threeBall) => {
   e.preventDefault();
   const result = {
     strike: 0,
@@ -112,8 +113,11 @@ const gameWin = () => {
 };
 
 const startGame = () => {
+  console.log("aa");
   const threeBall = makeThreeBall();
-  form.addEventListener("submit", compareUserInput(threeBall));
+  form.addEventListener("submit", (e) => {
+    compareUserInput(e, threeBall);
+  });
 };
 
 startGame();
