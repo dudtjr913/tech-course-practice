@@ -32,8 +32,9 @@
   - threeBall의 첫 번째 숫자로 랜덤하게 숫자 push 후 뽑힌 숫자를 waitingBall에서 splice
   - for문을 통해 세 번째 숫자까지 push --> 겹치는 숫자 없음
 
-2. 사용자가 입력할 수 있는 form, input을 html에 구현
+2. 사용자가 입력할 수 있는 form, input 및 결과를 html에 구현
   - input type = number로 구현
+  - 결과 = div
   
 3. 사용자가 입력한 숫자와 컴퓨터의 숫자를 비교하는 함수 구현(addEventListener)
   - S, B, O을 추가할 수 있는 객체 구현
