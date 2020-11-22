@@ -5,6 +5,8 @@ const input = form.querySelector("input");
 const finishDiv = form.querySelector("div");
 const resultDiv = document.body.querySelector(".result");
 
+let addUserInputEvent = null;
+
 const randomBallSelect = (numberLength) => {
   const randomNumber = Math.floor(Math.random() * numberLength);
 
@@ -28,7 +30,9 @@ const makeThreeBall = () => {
 const restartGame = () => {
   finishDiv.classList.remove("finish");
   finishDiv.innerText = "숫자를 입력해주세요 :";
+  input.value = "";
 
+  form.removeEventListener("submit", addUserInputEvent);
   return startGame();
 };
 
@@ -57,7 +61,7 @@ const isRestartGame = () => {
   }
 };
 
-const compareUserInput = (e, threeBall) => {
+const compareUserInput = (threeBall) => (e) => {
   e.preventDefault();
   const result = {
     strike: 0,
@@ -113,11 +117,9 @@ const gameWin = () => {
 };
 
 const startGame = () => {
-  console.log("aa");
   const threeBall = makeThreeBall();
-  form.addEventListener("submit", (e) => {
-    compareUserInput(e, threeBall);
-  });
+  addUserInputEvent = compareUserInput(threeBall);
+  form.addEventListener("submit", addUserInputEvent);
 };
 
 startGame();
