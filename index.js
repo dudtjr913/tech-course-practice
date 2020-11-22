@@ -26,6 +26,8 @@ const isUserInputCorrect = () => {
     alert("올바른 값이 아닙니다.");
   } else if (input.value.length !== 3) {
     alert("3자리의 숫자를 입력해주세요.");
+  } else if (new Set(input.value).size !== input.value.length) {
+    alert("겹치지 않게 숫자를 입력해주세요.");
   }
   input.value = "";
 };
