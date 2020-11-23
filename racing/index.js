@@ -31,8 +31,44 @@ const enterCarName = (e) => {
   checkSubmitedCarName(carNameInput.value, cars);
   if (cars.length > 0) {
     cars.forEach(() => (carNameForm.innerText = carNameInput.value));
+    return prepareSendUserTimesInput(cars);
   }
-  carNameInput.value = "";
+  return (carNameInput.value = "");
+};
+
+const checkSubmitedNumberOfTimes = (times) => {
+  if (times <= 0) return alert("0보다 큰 숫자를 입력해주세요.");
+  if (times.match(/[^0-9]/g)) return alert("숫자가 아닙니다.");
+  if (times >= 10) return alert("10미만의 숫자만 입력해주세요.");
+  return true;
+};
+
+const enterNumberOfTimes = (carsArray) => (e) => {
+  e.preventDefault();
+  const times = numberOfTimesInput.value;
+  if (checkSubmitedNumberOfTimes(times)) {
+    numberOfTimesForm.innerText = times;
+    const timeInterval = setInterval(() => {
+      makeOnResult(carsArray);
+      return setTimeout(() => clearInterval(timeInterval), (times - 1) * 1000);
+    }, 1000);
+  }
+  return (numberOfTimesInput.value = "");
+};
+
+const prepareSendUserTimesInput = (carsArray) => {
+  numberOfTimesWrapper.style.display = "block";
+  numberOfTimesForm.addEventListener("submit", enterNumberOfTimes(carsArray));
+};
+
+const makeOnResult = (carsArray) => {
+  resultText.style.display = "block";
+  carsArray.forEach((v) => {
+    const random = Math.floor(Math.random() * 9);
+    random >= 4 ? v.position++ : null;
+    const li = document.createElement("li");
+    resultUl.append(li, `${v.name}:${v.position}`);
+  });
 };
 
 carNameForm.addEventListener("submit", enterCarName);
