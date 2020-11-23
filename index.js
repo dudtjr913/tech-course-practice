@@ -1,9 +1,10 @@
 "use strict";
 
-const form = document.body.querySelector("form");
+const wrapper = document.body.querySelector(".baseball_wrapper");
+const form = wrapper.querySelector("form");
 const input = form.querySelector("input");
 const finishDiv = form.querySelector("div");
-const resultDiv = document.body.querySelector(".result");
+const resultDiv = wrapper.querySelector(".result");
 
 let addUserInputEvent = null;
 
@@ -25,6 +26,10 @@ const makeThreeBall = () => {
   }
 
   return threeBall;
+};
+
+const finishGame = () => {
+  document.body.removeChild(wrapper);
 };
 
 const restartGame = () => {
