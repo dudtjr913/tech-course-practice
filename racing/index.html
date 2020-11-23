@@ -8,14 +8,18 @@
     <title>Tech-Course</title>
   </head>
   <body>
-    <form class="car_name">
+    <div class="car_name_wrapper">
       <div>경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)</div>
-      <input />
-    </form>
-    <form class="times" style="display: none">
-      <div>시도할 회수는 몇회인가요?</div>
-      <input />
-    </form>
+      <form class="car_name">
+        <input />
+      </form>
+    </div>
+    <div class="times_wrapper" style="display: none">
+      <form class="times">
+        <div>시도할 회수는 몇회인가요?</div>
+        <input />
+      </form>
+    </div>
     <br />
     <div class="result_text" style="display: none">실행 결과</div>
     <ul class="result_ul"></ul>
