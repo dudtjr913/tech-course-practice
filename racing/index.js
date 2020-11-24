@@ -15,7 +15,19 @@ class Car {
   }
 }
 
-const checkSubmitedCarName = (carName, carsArray) => {
+const cars = [];
+
+const enterCarName = (e) => {
+  e.preventDefault();
+  checkSubmitedCarName(carNameInput.value);
+  if (cars.length > 0) {
+    carNameForm.innerText = carNameInput.value;
+    return prepareToSendUserTimesInput();
+  }
+  return (carNameInput.value = "");
+};
+
+const checkSubmitedCarName = (carName) => {
   const splitCarName = carName.split(",");
   for (const name of splitCarName) {
     if (name.length === 0) return alert("자동차 이름이 공백입니다.");
@@ -24,64 +36,63 @@ const checkSubmitedCarName = (carName, carsArray) => {
   }
   if (new Set(splitCarName).size !== splitCarName.length)
     return alert("이름이 중복됩니다.");
-  return splitCarName.forEach((name) => carsArray.push(new Car(name)));
+
+  return splitCarName.forEach((name) => cars.push(new Car(name)));
 };
 
-const enterCarName = (e) => {
+const prepareToSendUserTimesInput = () => {
+  numberOfTimesWrapper.style.display = "block";
+
+  return numberOfTimesForm.addEventListener("submit", enterNumberOfTimes);
+};
+
+const enterNumberOfTimes = (e) => {
   e.preventDefault();
-  const cars = [];
-  checkSubmitedCarName(carNameInput.value, cars);
-  if (cars.length > 0) {
-    carNameForm.innerText = carNameInput.value;
-    return prepareSendUserTimesInput(cars);
+  const times = numberOfTimesInput.value;
+  if (checkSubmitedNumberOfTimes(times)) {
+    numberOfTimesForm.innerText = times;
+    prepareToShowOnResult(times);
   }
-  return (carNameInput.value = "");
+
+  return (numberOfTimesInput.value = "");
 };
 
 const checkSubmitedNumberOfTimes = (times) => {
   if (times <= 0) return alert("0보다 큰 숫자를 입력해주세요.");
   if (times.match(/[^0-9]/g)) return alert("숫자가 아닙니다.");
   if (times >= 10) return alert("10미만의 숫자만 입력해주세요.");
+
   return true;
 };
 
-const prepareShowOnResult = (carsArray, times) => {
-  makeOnResult(carsArray);
+const prepareToShowOnResult = (times) => {
+  makeOnResult();
   if (parseInt(times, 10) === 1) return null;
   const showInterval = setInterval(() => {
-    makeOnResult(carsArray);
+    makeOnResult();
   }, 1000);
+
   return setTimeout(() => {
     clearInterval(showInterval);
-    getMaxPosition(carsArray);
+    getMaxPosition();
   }, (times - 1) * 1000);
 };
 
-const enterNumberOfTimes = (carsArray) => (e) => {
-  e.preventDefault();
-  const times = numberOfTimesInput.value;
-  if (checkSubmitedNumberOfTimes(times)) {
-    numberOfTimesForm.innerText = times;
-    prepareShowOnResult(carsArray, times);
-  }
+const makeOnResult = () => {
+  resultText.style.display = "block";
+  cars.forEach((v) => {
+    isPositionPlus(v);
+    makeOnCarText(v);
+  });
 
-  return (numberOfTimesInput.value = "");
-};
+  const carrigaReturn = document.createElement("br");
 
-const prepareSendUserTimesInput = (carsArray) => {
-  numberOfTimesWrapper.style.display = "block";
-  numberOfTimesForm.addEventListener("submit", enterNumberOfTimes(carsArray));
+  return resultUl.lastChild.appendChild(carrigaReturn);
 };
 
 const isPositionPlus = (car) => {
   const random = Math.floor(Math.random() * 9);
-  if (random >= 4) {
-    if (!car.position) {
-      car.position = "-";
-      return car.position;
-    }
-    return (car.position += "-");
-  }
+  if (random >= 4) return (car.position += "-");
 };
 
 const makeOnCarText = (car) => {
@@ -89,33 +100,29 @@ const makeOnCarText = (car) => {
   const carTextDiv = document.createElement("div");
   carTextDiv.innerText = `${car.name} : ${car.position}`;
   carTextLi.appendChild(carTextDiv);
-  resultUl.appendChild(carTextLi);
+
+  return resultUl.appendChild(carTextLi);
 };
 
-const makeOnResult = (carsArray) => {
-  resultText.style.display = "block";
-  carsArray.forEach((v) => {
-    isPositionPlus(v);
-    makeOnCarText(v);
-  });
-  const carrigaReturn = document.createElement("br");
-  resultUl.lastChild.appendChild(carrigaReturn);
-};
-
-const getMaxPosition = (carsArray) => {
-  const positionArray = carsArray.map((v) => v.position.length);
+const getMaxPosition = () => {
+  const positionArray = cars.map((v) => v.position.length);
   const maxPosition = Math.max(...positionArray);
-  const maxPositionCar = carsArray.filter(
-    (v) => v.position.length === maxPosition
-  );
+  const maxPositionCar = cars.filter((v) => v.position.length === maxPosition);
+
+  return getWinnerCar(maxPositionCar);
+};
+
+const getWinnerCar = (maxPositionCar) => {
   const winnerCar = maxPositionCar.map((v) => v.name);
-  gameFinishAndShowOnResult(winnerCar);
+
+  return gameFinishAndShowOnResult(winnerCar);
 };
 
 const gameFinishAndShowOnResult = (winnerCar) => {
   const resultDiv = document.createElement("div");
   resultDiv.innerText = `${winnerCar.join(",")}이 최종 우승했습니다.`;
-  document.body.appendChild(resultDiv);
+
+  return document.body.appendChild(resultDiv);
 };
 
 carNameForm.addEventListener("submit", enterCarName);
