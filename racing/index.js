@@ -43,16 +43,24 @@ const checkSubmitedNumberOfTimes = (times) => {
   return true;
 };
 
+const prepareShowOnResult = (carsArray, times) => {
+  makeOnResult(carsArray);
+  if (parseInt(times, 10) === 1) return null;
+  const showInterval = setInterval(() => {
+    makeOnResult(carsArray);
+
+    return setTimeout(() => clearInterval(showInterval), (times - 2) * 1000);
+  }, 1000);
+};
+
 const enterNumberOfTimes = (carsArray) => (e) => {
   e.preventDefault();
   const times = numberOfTimesInput.value;
   if (checkSubmitedNumberOfTimes(times)) {
     numberOfTimesForm.innerText = times;
-    const timeInterval = setInterval(() => {
-      makeOnResult(carsArray);
-      return setTimeout(() => clearInterval(timeInterval), (times - 1) * 1000);
-    }, 1000);
+    prepareShowOnResult(carsArray, times);
   }
+
   return (numberOfTimesInput.value = "");
 };
 
@@ -61,14 +69,29 @@ const prepareSendUserTimesInput = (carsArray) => {
   numberOfTimesForm.addEventListener("submit", enterNumberOfTimes(carsArray));
 };
 
+const isPositionPlus = (car) => {
+  const random = Math.floor(Math.random() * 9);
+  random >= 4 ? car.position++ : null;
+
+  return random;
+};
+
+const makeOnCarText = (car) => {
+  const carTextLi = document.createElement("li");
+  const carTextDiv = document.createElement("div");
+  carTextDiv.innerText = `${car.name} : ${car.position}`;
+  carTextLi.appendChild(carTextDiv);
+  resultUl.appendChild(carTextLi);
+};
+
 const makeOnResult = (carsArray) => {
   resultText.style.display = "block";
   carsArray.forEach((v) => {
-    const random = Math.floor(Math.random() * 9);
-    random >= 4 ? v.position++ : null;
-    const li = document.createElement("li");
-    resultUl.append(li, `${v.name}:${v.position}`);
+    isPositionPlus(v);
+    makeOnCarText(v);
   });
+  const carrigaReturn = document.createElement("br");
+  resultUl.lastChild.appendChild(carrigaReturn);
 };
 
 carNameForm.addEventListener("submit", enterCarName);
