@@ -48,9 +48,11 @@ const prepareShowOnResult = (carsArray, times) => {
   if (parseInt(times, 10) === 1) return null;
   const showInterval = setInterval(() => {
     makeOnResult(carsArray);
-
-    return setTimeout(() => clearInterval(showInterval), (times - 2) * 1000);
   }, 1000);
+  return setTimeout(() => {
+    clearInterval(showInterval);
+    getMaxPosition(carsArray);
+  }, (times - 1) * 1000);
 };
 
 const enterNumberOfTimes = (carsArray) => (e) => {
@@ -96,6 +98,22 @@ const makeOnResult = (carsArray) => {
   });
   const carrigaReturn = document.createElement("br");
   resultUl.lastChild.appendChild(carrigaReturn);
+};
+
+const getMaxPosition = (carsArray) => {
+  const positionArray = carsArray.map((v) => v.position.length);
+  const maxPosition = Math.max(...positionArray);
+  const maxPositionCar = carsArray.filter(
+    (v) => v.position.length === maxPosition
+  );
+  const winnerCar = maxPositionCar.map((v) => v.name);
+  gameFinishAndShowOnResult(winnerCar);
+};
+
+const gameFinishAndShowOnResult = (winnerCar) => {
+  const resultDiv = document.createElement("div");
+  resultDiv.innerText = `${winnerCar.join(",")}이 최종 우승했습니다.`;
+  document.body.appendChild(resultDiv);
 };
 
 carNameForm.addEventListener("submit", enterCarName);
