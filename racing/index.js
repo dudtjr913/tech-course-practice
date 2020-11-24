@@ -22,6 +22,8 @@ const checkSubmitedCarName = (carName, carsArray) => {
     if (name.match(/([^a-zA-Z])/g)) return alert("영어가 아닙니다.");
     if (name.length >= 5) return alert("5자리를 초과합니다.");
   }
+  if (new Set(splitCarName).size !== splitCarName.length)
+    return alert("이름이 중복됩니다.");
   return splitCarName.forEach((name) => carsArray.push(new Car(name)));
 };
 
