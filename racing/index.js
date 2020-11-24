@@ -11,7 +11,7 @@ const resultUl = document.body.querySelector(".result_ul");
 class Car {
   constructor(name) {
     this.name = name;
-    this.position = 0;
+    this.position = "";
   }
 }
 
@@ -71,9 +71,13 @@ const prepareSendUserTimesInput = (carsArray) => {
 
 const isPositionPlus = (car) => {
   const random = Math.floor(Math.random() * 9);
-  random >= 4 ? car.position++ : null;
-
-  return random;
+  if (random >= 4) {
+    if (!car.position) {
+      car.position = "-";
+      return car.position;
+    }
+    return (car.position += "-");
+  }
 };
 
 const makeOnCarText = (car) => {
