@@ -30,7 +30,7 @@ const enterCarName = (e) => {
   const cars = [];
   checkSubmitedCarName(carNameInput.value, cars);
   if (cars.length > 0) {
-    cars.forEach(() => (carNameForm.innerText = carNameInput.value));
+    carNameForm.innerText = carNameInput.value;
     return prepareSendUserTimesInput(cars);
   }
   return (carNameInput.value = "");
