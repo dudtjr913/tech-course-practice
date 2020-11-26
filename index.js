@@ -95,19 +95,19 @@ const answerConfirm = (answerNumber, answerNumberIndex, result) => {
 };
 
 const showOnUserResult = (result) => {
-  resultDiv.innerText = "";
+  resultDiv.innerText = `${input.value} :`;
   if (result.strike) {
     if (result.strike === 3) {
       return gameWin();
     }
-    resultDiv.innerText = ` ${result.strike}스트라이크`;
+    resultDiv.innerText += ` ${result.strike}스트라이크`;
   }
   if (result.ball) {
     resultDiv.innerText += ` ${result.ball}볼`;
   }
   if (result.out) {
     if (result.out === 3) {
-      return (resultDiv.innerText = "Nothing");
+      return (resultDiv.innerText += ` Nothing`);
     }
     resultDiv.innerText += ` ${result.out}아웃`;
   }
