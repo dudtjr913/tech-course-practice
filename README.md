@@ -163,7 +163,8 @@
 - [v] 보너스 번호를 담을 변수를 전역에 설정한다. **let bonusNumber = null**
 
 - [] 랜덤하게 1 ~ 45까지의 수를 중복 없이 6개 뽑는 함수를 구현한다. **createLottoNumbers**
-
+   - [] 1 ~ 45까지의 수 중 랜덤하게 1개씩 뽑는 함수를 구현한다. **selectNumber**
+   
 - [] 사용자의 금액이 submit될 때 화면에 입력한 금액을 표시하는 함수를 구현한다. **showPrice**
 
 - [] showPrice 함수 안에 금액이 올바른지 확인하는 함수를 구현한다. **isRightPrice**
