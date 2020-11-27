@@ -202,7 +202,9 @@
       - [v] 당첨 번호 6개와 중복되는 경우
     - [v] input이 올바르다면 bonusNumber을 바꿔준다.
 
-- [] 사용자가 구매한 로또와 당첨 번호를 비교하는 함수를 구현한다. **compareLottoNumbers**
+- [v] 사용자가 구매한 로또와 당첨 번호를 비교하는 함수를 구현한다. **compareLottoNumbers**
+   - [v] 각각의 로또 숫자를 비교하여 맞은 개수를 return하는 함수를 구현한다. **checkMatchingNumber**
+   - [v] 등수를 return 함수를 구현한다. **checkRating**
 
 - [] 수익률을 구하는 함수를 구현한다. **calculateProfit**
 
