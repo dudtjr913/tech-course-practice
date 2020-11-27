@@ -8,13 +8,13 @@ const winningNumbersInput = winningNumbersForm.querySelector("input");
 const bonusNumberInput = bonusNumberForm.querySelector("input");
 
 const userLotto = [];
-const winningLottoNumbers = [];
 const matchingNumbers = {
   three: 0,
   four: 0,
   five: 0,
   six: 0,
 };
+let winningLottoNumbers = null;
 let bonusNumber = null;
 
 const createLottoNumbers = () => {
@@ -61,9 +61,42 @@ const submitWinningNumbers = () => {
   return winningNumbersForm.addEventListener("submit", showWinningNumbers);
 };
 
+const compareLottoNumbers = () => {
+  console.log("aa");
+};
+
+const showBonusNumber = (e) => {
+  e.preventDefault();
+  if (!isRightBonusNumber()) return (bonusNumberInput.value = "");
+
+  return compareLottoNumbers();
+};
+
+const isRightBonusNumber = () => {
+  const { value } = bonusNumberInput;
+  if (value.match(/\D/)) return alert("숫자를 입력해주세요.");
+  if (value === "") return alert("아무 숫자도 입력하지 않았습니다.");
+  if (value >= 45 || value <= 0)
+    return alert("1 ~ 45까지의 숫자를 입력해주세요.");
+  if (winningLottoNumbers.includes(value))
+    return alert("이미 지난 주 당첨 숫자에 포함된 숫자입니다.");
+
+  return (bonusNumber = value);
+};
+
+const submitBonusNumber = () => {
+  const hiddenBonusDiv = document.body.querySelector("#bonus-number");
+  hiddenBonusDiv.style.visibility = "visible";
+
+  return bonusNumberForm.addEventListener("submit", showBonusNumber);
+};
+
 const showWinningNumbers = (e) => {
   e.preventDefault();
   if (!isRightWinningNumbers()) return (winningNumbersInput.value = "");
+  winningNumbersForm.replaceWith(winningNumbersInput.value);
+
+  return submitBonusNumber();
 };
 
 const isRightWinningNumbers = () => {
@@ -75,7 +108,7 @@ const isRightWinningNumbers = () => {
   if (value.length !== new Set(value).size) return alert("숫자가 중복됩니다.");
   if (value.length !== 6) return alert("6자리의 숫자를 입력해주세요.");
 
-  return true;
+  return (winningLottoNumbers = value);
 };
 
 const isRightPrice = () => {
