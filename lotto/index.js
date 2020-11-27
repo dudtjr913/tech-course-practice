@@ -12,9 +12,10 @@ const matchingNumbers = {
   three: 0,
   four: 0,
   five: 0,
+  fiveBonus: 0,
   six: 0,
 };
-let winningLottoNumbers = null;
+const winningLottoNumbers = [];
 let bonusNumber = null;
 
 const createLottoNumbers = () => {
@@ -25,7 +26,6 @@ const createLottoNumbers = () => {
     const selectedNumber = numbers.splice(removedIndex, 1);
     lottoNumbers.push(...selectedNumber);
   }
-
   return lottoNumbers;
 };
 
@@ -62,12 +62,37 @@ const submitWinningNumbers = () => {
 };
 
 const compareLottoNumbers = () => {
-  console.log("aa");
+  for (let i = 0; i < userLotto.length; i++) {
+    checkMatchingNumber(userLotto[i]);
+  }
+
+  return calculateProfit();
+};
+
+const checkMatchingNumber = (userNumber) => {
+  let matchingWinningNumber = 0;
+  let matchingBonusNumber = 0;
+  userNumber.forEach((number) => {
+    winningLottoNumbers.includes(number) && matchingWinningNumber++;
+    bonusNumber === number && matchingBonusNumber++;
+  });
+
+  return checkRating(matchingWinningNumber, matchingBonusNumber);
+};
+
+const checkRating = (winningNumber, bonusNumber) => {
+  if (winningNumber === 3) return matchingNumbers.three++;
+  if (winningNumber === 4) return matchingNumbers.four++;
+  if (winningNumber === 5 && bonusNumber === 1)
+    return matchingNumbers.fiveBonus++;
+  if (winningNumber === 5) return matchingNumbers.five++;
+  if (winningNumber === 6) return matchingNumbers.six++;
 };
 
 const showBonusNumber = (e) => {
   e.preventDefault();
   if (!isRightBonusNumber()) return (bonusNumberInput.value = "");
+  bonusNumberForm.replaceWith(bonusNumberInput.value);
 
   return compareLottoNumbers();
 };
@@ -78,10 +103,10 @@ const isRightBonusNumber = () => {
   if (value === "") return alert("아무 숫자도 입력하지 않았습니다.");
   if (value >= 45 || value <= 0)
     return alert("1 ~ 45까지의 숫자를 입력해주세요.");
-  if (winningLottoNumbers.includes(value))
+  if (winningLottoNumbers.includes(parseInt(value, 10)))
     return alert("이미 지난 주 당첨 숫자에 포함된 숫자입니다.");
 
-  return (bonusNumber = value);
+  return (bonusNumber = parseInt(value, 10));
 };
 
 const submitBonusNumber = () => {
@@ -108,7 +133,7 @@ const isRightWinningNumbers = () => {
   if (value.length !== new Set(value).size) return alert("숫자가 중복됩니다.");
   if (value.length !== 6) return alert("6자리의 숫자를 입력해주세요.");
 
-  return (winningLottoNumbers = value);
+  return value.map((number) => winningLottoNumbers.push(parseInt(number, 10)));
 };
 
 const isRightPrice = () => {
@@ -140,4 +165,3 @@ const showPrice = (e) => {
 };
 
 priceForm.addEventListener("submit", showPrice);
-4;
