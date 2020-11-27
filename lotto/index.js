@@ -15,6 +15,13 @@ const matchingNumbers = {
   fiveBonus: 0,
   six: 0,
 };
+const winningAmount = {
+  three$: 5000,
+  four$: 50000,
+  five$: 1500000,
+  fiveBonus$: 3000000,
+  six$: 200000000,
+};
 const winningLottoNumbers = [];
 let bonusNumber = null;
 
@@ -87,6 +94,33 @@ const checkRating = (winningNumber, bonusNumber) => {
     return matchingNumbers.fiveBonus++;
   if (winningNumber === 5) return matchingNumbers.five++;
   if (winningNumber === 6) return matchingNumbers.six++;
+};
+
+const calculateProfit = () => {
+  let sum = 0;
+  for (const rating in matchingNumbers) {
+    sum += winningAmount[`${rating}$`] * matchingNumbers[rating];
+  }
+  const profit = parseInt((sum / priceInput.value).toFixed(3), 10);
+
+  return showResult(profit);
+};
+
+const showResult = (profit) => {
+  const resultDiv = document.body.querySelector("#winning-result");
+  const { three$, four$, five$, fiveBonus$, six$ } = winningAmount;
+  const { three, four, five, fiveBonus, six } = matchingNumbers;
+  resultDiv.innerHTML = `
+  <p>당첨 통계<br/>
+  -------<br/>
+  3개 일치 (${three$}원)- ${three}개<br/>
+  4개 일치 (${four$}원)- ${four}개<br/>
+  5개 일치 (${five$}원)- ${five}개<br/>
+  5개 일치, 보너스 볼 일치 (${fiveBonus$}원)- ${fiveBonus}개<br/>
+  6개 일치 (${six$}원)- ${six}개<br/>
+  총 수익률은 ${profit}입니다.
+  </p>
+  `;
 };
 
 const showBonusNumber = (e) => {
