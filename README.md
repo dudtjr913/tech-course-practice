@@ -190,17 +190,17 @@
       - [v] 아무 것도 입력하지 않은 경우
     - [v] input이 올바르다면 winningLottoNumbers를 바꿔준다.
 
-- [] 보너스 볼을 입력할 수 있는 함수를 구현한다. **submitBonusNumber**
+- [v] 보너스 볼을 입력할 수 있는 함수를 구현한다. **submitBonusNumber**
 
-- [] 보너스 볼을 입력 받고, 화면에 표시하는 함수를 구현한다. **showBonusNumber**
+- [v] 보너스 볼을 입력 받고, 화면에 표시하는 함수를 구현한다. **showBonusNumber**
 
-  - [] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightBonusNumber**
+  - [v] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightBonusNumber**
     - 예외처리)
-      - [] 1 ~ 45의 숫자가 아닌 경우
-      - [] 빈 칸을 입력한 경우
-      - [] 숫자가 아닌 경우
-      - [] 당첨 번호 6개와 중복되는 경우
-    - [] input이 올바르다면 bonusNumber을 바꿔준다.
+      - [v] 1 ~ 45의 숫자가 아닌 경우
+      - [v] 빈 칸을 입력한 경우
+      - [v] 숫자가 아닌 경우
+      - [v] 당첨 번호 6개와 중복되는 경우
+    - [v] input이 올바르다면 bonusNumber을 바꿔준다.
 
 - [] 사용자가 구매한 로또와 당첨 번호를 비교하는 함수를 구현한다. **compareLottoNumbers**
 
