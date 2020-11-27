@@ -159,7 +159,8 @@
 
 - [v] 로또 숫자를 담을 배열을 전역에 설정한다. **const userLotto = []**
 - [v] 일치하는 숫자의 개수를 담을 객체를 전역에 설정한다. **const matchingNumbers = {}**
-- [v] 당첨 번호를 담을 배열을 전역에 설정한다. **let winningLottoNumbers = null**
+- [v] 당첨 금액을 담을 객체를 전역에 설정한다. **const winningAmount = {}**
+- [v] 당첨 번호를 담을 배열을 전역에 설정한다. **const winningLottoNumbers = []**
 - [v] 보너스 번호를 담을 변수를 전역에 설정한다. **let bonusNumber = null**
 
 - [v] 랜덤하게 1 ~ 45까지의 수를 중복 없이 6개 뽑는 함수를 구현한다. **createLottoNumbers**
