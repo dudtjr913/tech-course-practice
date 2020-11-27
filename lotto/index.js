@@ -58,12 +58,22 @@ const submitWinningNumbers = () => {
   const showingInput = document.body.querySelector("#result");
   showingInput.style.visibility = "visible";
 
-  return winningNumberForm.addEventListener("submit", showWinningNumbers);
+  return winningNumbersForm.addEventListener("submit", showWinningNumbers);
 };
 
 const showWinningNumbers = (e) => {
   e.preventDefault();
   if (!isRightWinningNumbers()) return (winningNumbersInput.value = "");
+};
+
+const isRightWinningNumbers = () => {
+  const value = winningNumbersInput.value.split(",");
+  if (value.some((number) => number.match(/\D/) || number === ""))
+    return alert("숫자를 입력해주세요.");
+  if (value.some((number) => number > 45 || number <= 0))
+    return alert("1 ~ 45까지의 숫자를 입력해주세요.");
+  if (value.length !== new Set(value).size) return alert("숫자가 중복됩니다.");
+  if (value.length !== 6) return alert("6자리의 숫자를 입력해주세요.");
 };
 
 const isRightPrice = () => {
