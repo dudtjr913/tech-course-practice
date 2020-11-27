@@ -166,14 +166,14 @@
    - [v] 1 ~ 45까지의 수를 생성하는 함수를 구현한다 **createNumbersToMaxNumber**
    - [v] 1 ~ 45까지의 수 중 랜덤하게 1개씩 뽑는 함수를 구현한다. **selectNumber**
    
-- [] 사용자의 금액이 submit될 때 화면에 입력한 금액을 표시하는 함수를 구현한다. **showPrice**
+- [v] 사용자의 금액이 submit될 때 화면에 입력한 금액을 표시하는 함수를 구현한다. **showPrice**
 
-- [] showPrice 함수 안에 금액이 올바른지 확인하는 함수를 구현한다. **isRightPrice**
+- [v] showPrice 함수 안에 금액이 올바른지 확인하는 함수를 구현한다. **isRightPrice**
   - 예외처리)
-    - [] 양의 정수가 아닐 경우
-    - [] 1000의 배수가 아닐 경우
+    - [v] 양의 정수가 아닐 경우
+    - [v] 1000의 배수가 아닐 경우
 
-- [] 금액이 올바르다면 금액에 맞는 개수의 로또만큼 createLottoNumbers함수에서 만들어 userLotto에 push한다. **pushLottoNumbers**
+- [v] 금액이 올바르다면 금액에 맞는 개수의 로또만큼 createLottoNumbers함수에서 만들어 userLotto에 push한다. **pushLottoNumbers**
 
 - [] 랜덤하게 생성된 로또 번호를 화면에 출력할 수 있는 함수를 구현한다. **showLottoNumbers**
 
