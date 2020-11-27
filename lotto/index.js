@@ -51,11 +51,20 @@ const isRightPrice = () => {
   return true;
 };
 
+const pushLottoNumbers = () => {
+  const reps = priceInput.value / 1000;
+  for (let i = 1; i <= reps; i++) {
+    userLotto.push(createLottoNumbers());
+  }
+
+  return showWinningNumbers();
+};
+
 const showPrice = (e) => {
   e.preventDefault();
   if (isRightPrice()) {
     priceForm.replaceWith(priceInput.value);
-    pushLottoNumbers();
+    return pushLottoNumbers();
   }
 };
 
