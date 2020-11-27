@@ -206,8 +206,6 @@
    - [v] 각각의 로또 숫자를 비교하여 맞은 개수를 return하는 함수를 구현한다. **checkMatchingNumber**
    - [v] 등수를 return 함수를 구현한다. **checkRating**
 
-- [] 수익률을 구하는 함수를 구현한다. **calculateProfit**
+- [v] 수익률을 구하는 함수를 구현한다. **calculateProfit**
 
-- [] 당첨 통계 화면을 표시하는 함수를 구현한다. **showResult**
-
-- [] 게임을 종료하는 함수를 구현한다. **gameFinish**
+- [v] 당첨 통계 화면을 표시하는 함수를 구현한다. **showResult**
