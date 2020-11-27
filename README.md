@@ -158,8 +158,8 @@
 ## 구현해야 할 기능
 
 - [v] 로또 숫자를 담을 배열을 전역에 설정한다. **const userLotto = []**
-- [v] 당첨 번호를 담을 배열을 전역에 설정한다. **const winningLottoNumbers = []**
 - [v] 일치하는 숫자의 개수를 담을 객체를 전역에 설정한다. **const matchingNumbers = {}**
+- [v] 당첨 번호를 담을 배열을 전역에 설정한다. **let winningLottoNumbers = null**
 - [v] 보너스 번호를 담을 변수를 전역에 설정한다. **let bonusNumber = null**
 
 - [v] 랜덤하게 1 ~ 45까지의 수를 중복 없이 6개 뽑는 함수를 구현한다. **createLottoNumbers**
@@ -188,7 +188,7 @@
       - [] 6자리의 수를 입력하지 않은 경우
       - [] 쉼표로 구분하지 않은 경우
       - [] 아무 것도 입력하지 않은 경우
-    - [] input이 올바르다면 winningLottoNumbers에 push한다.
+    - [] input이 올바르다면 winningLottoNumbers를 바.
 - [] 보너스 볼을 입력 받고, 화면에 표시하는 함수를 구현한다. **showBonusNumber**
 
   - [] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightBonusNumber**
