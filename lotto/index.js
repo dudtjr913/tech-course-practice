@@ -62,10 +62,12 @@ const pushLottoNumbers = () => {
 
 const showPrice = (e) => {
   e.preventDefault();
-  if (isRightPrice()) {
-    priceForm.replaceWith(priceInput.value);
-    return pushLottoNumbers();
+  if (!isRightPrice()) {
+    return (priceInput.value = "");
   }
+  priceForm.replaceWith(priceInput.value);
+
+  return pushLottoNumbers();
 };
 
 priceForm.addEventListener("submit", showPrice);
