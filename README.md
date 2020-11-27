@@ -188,7 +188,7 @@
       - [] 6자리의 수를 입력하지 않은 경우
       - [] 쉼표로 구분하지 않은 경우
       - [] 아무 것도 입력하지 않은 경우
-    - [] input이 올바르다면 winningLottoNumbers를 바.
+    - [] input이 올바르다면 winningLottoNumbers를 바꿔준다.
 - [] 보너스 볼을 입력 받고, 화면에 표시하는 함수를 구현한다. **showBonusNumber**
 
   - [] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightBonusNumber**
