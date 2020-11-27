@@ -135,7 +135,7 @@ const isRightBonusNumber = () => {
   const { value } = bonusNumberInput;
   if (value.match(/\D/)) return alert("숫자를 입력해주세요.");
   if (value === "") return alert("아무 숫자도 입력하지 않았습니다.");
-  if (value >= 45 || value <= 0)
+  if (value > 45 || value <= 0)
     return alert("1 ~ 45까지의 숫자를 입력해주세요.");
   if (winningLottoNumbers.includes(parseInt(value, 10)))
     return alert("이미 지난 주 당첨 숫자에 포함된 숫자입니다.");
