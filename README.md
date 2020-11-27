@@ -175,7 +175,9 @@
 
 - [v] 금액이 올바르다면 금액에 맞는 개수의 로또만큼 createLottoNumbers함수에서 만들어 userLotto에 push한다. **pushLottoNumbers**
 
-- [] 랜덤하게 생성된 로또 번호를 화면에 출력할 수 있는 함수를 구현한다. **showLottoNumbers**
+- [v] 랜덤하게 생성된 로또 번호를 화면에 출력할 수 있는 함수를 구현한다. **showLottoNumbers**
+
+- [] 지난 주 당첨 번호를 입력할 수 있는 input을 submit할 수 있는 함수를 구현한다. **submitWinningNumbers**
 
 - [] 지난 주 당첨 번호를 입력 받고, 화면에 표시하는 함수를 구현한다. **showWinningNumbers**
   - [] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightWinningNumbers**
