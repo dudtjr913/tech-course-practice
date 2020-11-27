@@ -43,6 +43,17 @@ const selectNumber = (maxLength) => {
   return randomNumber;
 };
 
+const showLottoNumbers = () => {
+  const numbersDiv = document.body.querySelector("#buy-number");
+  const lottoUl = document.body.querySelector("#random-lotto");
+  numbersDiv.innerText = `${userLotto.length}개를 구매했습니다.`;
+  userLotto.map((number) => {
+    lottoUl.innerHTML += `<li style="margin-top:5px">[${number}]</li>`;
+  });
+
+  return showWinningNumbers();
+};
+
 const isRightPrice = () => {
   const { value } = priceInput;
   if (value.match(/[^0-9]/)) return alert("숫자를 입력해주세요.");
@@ -57,7 +68,7 @@ const pushLottoNumbers = () => {
     userLotto.push(createLottoNumbers());
   }
 
-  return showWinningNumbers();
+  return showLottoNumbers();
 };
 
 const showPrice = (e) => {
@@ -71,3 +82,4 @@ const showPrice = (e) => {
 };
 
 priceForm.addEventListener("submit", showPrice);
+4;
