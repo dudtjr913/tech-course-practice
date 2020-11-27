@@ -172,23 +172,26 @@
   - 예외처리)
     - [v] 양의 정수가 아닐 경우
     - [v] 1000의 배수가 아닐 경우
-    - [] 아무 것도 입력하지 않을 경우
+    - [v] 아무 것도 입력하지 않을 경우
 
 - [v] 금액이 올바르다면 금액에 맞는 개수의 로또만큼 createLottoNumbers함수에서 만들어 userLotto에 push한다. **pushLottoNumbers**
 
 - [v] 랜덤하게 생성된 로또 번호를 화면에 출력할 수 있는 함수를 구현한다. **showLottoNumbers**
 
-- [] 지난 주 당첨 번호를 입력할 수 있는 input을 submit할 수 있는 함수를 구현한다. **submitWinningNumbers**
+- [v] 지난 주 당첨 번호를 입력할 수 있는 input을 submit할 수 있는 함수를 구현한다. **submitWinningNumbers**
 
-- [] 지난 주 당첨 번호를 입력 받고, 화면에 표시하는 함수를 구현한다. **showWinningNumbers**
-  - [] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightWinningNumbers**
+- [v] 지난 주 당첨 번호를 입력 받고, 화면에 표시하는 함수를 구현한다. **showWinningNumbers**
+  - [v] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightWinningNumbers**
     - 예외처리)
-      - [] 1 ~ 45의 숫자가 아닌 경우
-      - [] 중복된 숫자를 입력한 경우
-      - [] 6자리의 수를 입력하지 않은 경우
-      - [] 쉼표로 구분하지 않은 경우
-      - [] 아무 것도 입력하지 않은 경우
-    - [] input이 올바르다면 winningLottoNumbers를 바꿔준다.
+      - [v] 1 ~ 45의 숫자가 아닌 경우
+      - [v] 중복된 숫자를 입력한 경우
+      - [v] 6자리의 수를 입력하지 않은 경우
+      - [v] 쉼표로 구분하지 않은 경우
+      - [v] 아무 것도 입력하지 않은 경우
+    - [v] input이 올바르다면 winningLottoNumbers를 바꿔준다.
+
+- [] 보너스 볼을 입력할 수 있는 함수를 구현한다. **submitBonusNumber**
+
 - [] 보너스 볼을 입력 받고, 화면에 표시하는 함수를 구현한다. **showBonusNumber**
 
   - [] 이 때, 내부에 input이 올바른지 확인하는 함수를 구현한다. **isRightBonusNumber**
