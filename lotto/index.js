@@ -16,3 +16,31 @@ const matchingNumbers = {
   six: 0,
 };
 let bonusNumber = null;
+
+const createLottoNumbers = () => {
+  const lottoNumbers = [];
+  const numbers = createNumbersToMaxNumber();
+  while (lottoNumbers.length < 6) {
+    const removedIndex = selectNumber(numbers.length);
+    const selectedNumber = numbers.splice(removedIndex, 1);
+    lottoNumbers.push(...selectedNumber);
+  }
+
+  return lottoNumbers;
+};
+
+const createNumbersToMaxNumber = () => {
+  const MAX_NUMBER = 45;
+
+  return Array(MAX_NUMBER)
+    .fill()
+    .map((v, index) => index + 1);
+};
+
+const selectNumber = (maxLength) => {
+  const randomNumber = Math.floor(Math.random() * maxLength);
+
+  return randomNumber;
+};
+
+createLottoNumbers();
