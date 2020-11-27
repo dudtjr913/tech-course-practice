@@ -43,4 +43,12 @@ const selectNumber = (maxLength) => {
   return randomNumber;
 };
 
-createLottoNumbers();
+const showPrice = (e) => {
+  e.preventDefault();
+  if (isRightPrice()) {
+    priceForm.innerHTML = `<div>${priceInput.value}</div>`;
+    pushLottoNumbers();
+  }
+};
+
+priceForm.addEventListener("submit", showPrice);
