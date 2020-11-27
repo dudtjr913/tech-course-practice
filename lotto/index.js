@@ -51,7 +51,19 @@ const showLottoNumbers = () => {
     lottoUl.innerHTML += `<li style="margin-top:5px">[${number}]</li>`;
   });
 
-  return showWinningNumbers();
+  return submitWinningNumbers();
+};
+
+const submitWinningNumbers = () => {
+  const showingInput = document.body.querySelector("#result");
+  showingInput.style.visibility = "visible";
+
+  return winningNumberForm.addEventListener("submit", showWinningNumbers);
+};
+
+const showWinningNumbers = (e) => {
+  e.preventDefault();
+  if (!isRightWinningNumbers()) return (winningNumbersInput.value = "");
 };
 
 const isRightPrice = () => {
