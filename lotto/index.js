@@ -43,10 +43,18 @@ const selectNumber = (maxLength) => {
   return randomNumber;
 };
 
+const isRightPrice = () => {
+  const { value } = priceInput;
+  if (value.match(/[^0-9]/)) return alert("숫자를 입력해주세요.");
+  if (value % 1000 !== 0) return alert("1000의 배수를 입력해주세요.");
+
+  return true;
+};
+
 const showPrice = (e) => {
   e.preventDefault();
   if (isRightPrice()) {
-    priceForm.innerHTML = `<div>${priceInput.value}</div>`;
+    priceForm.replaceWith(priceInput.value);
     pushLottoNumbers();
   }
 };
