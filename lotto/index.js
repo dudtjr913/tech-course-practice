@@ -74,12 +74,15 @@ const isRightWinningNumbers = () => {
     return alert("1 ~ 45까지의 숫자를 입력해주세요.");
   if (value.length !== new Set(value).size) return alert("숫자가 중복됩니다.");
   if (value.length !== 6) return alert("6자리의 숫자를 입력해주세요.");
+
+  return true;
 };
 
 const isRightPrice = () => {
   const { value } = priceInput;
-  if (value.match(/[^0-9]/)) return alert("숫자를 입력해주세요.");
+  if (value.match(/\D/)) return alert("숫자를 입력해주세요.");
   if (value % 1000 !== 0) return alert("1000의 배수를 입력해주세요.");
+  if (value === "") return alert("아무 숫자도 입력하지 않았습니다.");
 
   return true;
 };
