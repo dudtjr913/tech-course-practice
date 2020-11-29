@@ -1,7 +1,7 @@
 export default class CreateElement {
   constructor() {
     this.tableList = [1, 2, 3, 5, 6, 8];
-    this.AllMenu = [
+    this.allMenu = [
       {
         number: 1,
         name: '후라이드',
@@ -62,7 +62,7 @@ export default class CreateElement {
       <div>3 - 프로그램 종료</div>
       <h4 style="margin:5px 0px">## 원하는 기능을 선택하세요.</h4>
       <form id="main-form">
-      <input/>
+      <input type="number" id="main-input"/>
       </form>
       `;
     document.body.appendChild(mainSection);
@@ -87,7 +87,7 @@ export default class CreateElement {
     tableSection.innerHTML += `
     <h4 style="margin:5px 0px">## 테이블을 선택하세요.</h4>
     <form id="table-form">
-    <input/>
+    <input type="number" id="table-input"/>
     </form>
     `;
   }
@@ -98,7 +98,7 @@ export default class CreateElement {
     menuSection.id = 'menu';
     menuUl.style.listStyle = 'none';
     menuUl.style.padding = '0px';
-    for (const menu of this.AllMenu) {
+    for (const menu of this.allMenu) {
       menuUl.innerHTML += `
       <li>${menu.class} ${menu.number} - ${menu.name} : ${menu.price}원</li>
       `;
@@ -108,7 +108,7 @@ export default class CreateElement {
     menuSection.innerHTML += `
     <h4 style="margin:5px 0px">## 등록할 메뉴를 선택하세요.</h4>
     <form id="menu-form">
-    <input/>
+    <input type="number" id="menu-input"/>
     </form>    
     `;
   }
@@ -118,7 +118,7 @@ export default class CreateElement {
     menuSection.innerHTML += `
     <h4 style="margin:5px 0px">## 메뉴의 수량을 선택하세요.</h4>
     <form id="number-form">
-    <input/>
+    <input type="number" id="number-input"/>
     </form>    
     `;
   }
@@ -127,7 +127,7 @@ export default class CreateElement {
     const orderSection = document.createElement('section');
     orderLists = [];
     for (const number of lists) {
-      this.AllMenu.find((menu) => {
+      this.allMenu.find((menu) => {
         menu.number === parseInt(number, 10) && orderLists.push(menu);
       });
     }
@@ -149,7 +149,7 @@ export default class CreateElement {
     <h4 style="margin:5px 0px">## 1번 테이블의 결제를 진행합니다.</h4>
     <h4 style="margin:5px 0px">## 신용카드는 1번, 현금은 2번</h4>
     <form id="payment-form">
-    <input/>
+    <input type="number" id="payment-input"/>
     </form>
     `;
   }
