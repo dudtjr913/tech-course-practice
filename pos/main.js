@@ -1,6 +1,7 @@
 export default class CreateElement {
   constructor() {
     this.tableList = [1, 2, 3, 5, 6, 8];
+    this.allPlusPrice = 0;
     this.allMenu = [
       {
         number: 1,
@@ -51,6 +52,7 @@ export default class CreateElement {
         class: '[음료]',
       },
     ];
+    this.DISCOUNT = 10000;
   }
 
   createMain() {
@@ -125,10 +127,17 @@ export default class CreateElement {
 
   showOrderList(lists) {
     const orderSection = document.createElement('section');
-    orderLists = [];
-    for (const number of lists) {
+    const orderLists = [];
+    console.log(lists);
+    for (const userMenu of lists) {
       this.allMenu.find((menu) => {
-        menu.number === parseInt(number, 10) && orderLists.push(menu);
+        menu.number === parseInt(userMenu.number, 10) &&
+          orderLists.push({
+            name: menu.name,
+            amount: parseInt(userMenu.amount, 10),
+            price: menu.price,
+            class: menu.class,
+          });
       });
     }
     orderSection.innerHTML = `
@@ -136,11 +145,31 @@ export default class CreateElement {
       <div>메뉴 수량 금액</div>
       `;
     for (const menu of orderLists) {
-      orderSection.innerHTML += `
-        <div>${menu.name} ${menu.number} ${menu.price}</div>
-        `;
+      menu.class === '[치킨]'
+        ? this.discountChicken(orderSection, menu)
+        : this.calculatePrice(orderSection, menu);
     }
     document.body.appendChild(orderSection);
+  }
+
+  discountChicken(orderSection, menu) {
+    const {price, amount, name} = menu;
+    const discount = price * amount - Math.floor(amount / 10) * this.DISCOUNT;
+    this.allPlusPrice += discount;
+
+    return (orderSection.innerHTML += `
+        <div>${name} ${amount} ${discount}원</div>
+        `);
+  }
+
+  calculatePrice(orderSection, menu) {
+    const {price, amount, name} = menu;
+    this.allPlusPrice += discount;
+
+    return (orderSection.innerHTML += `
+    <div>${name} ${amount} ${price * amount}원
+    </div>
+    `);
   }
 
   proceedWithPayment() {
@@ -152,13 +181,16 @@ export default class CreateElement {
     <input type="number" id="payment-input"/>
     </form>
     `;
+    document.body.appendChild(paymentSection);
   }
 
   showOnUserPrice(price) {
     const priceSection = document.createElement('section');
     priceSection.innerHTML = `
-    <h4 style="margin:5px 0px">## 최정 결제할 금액</h4>
-    <div<${price}원</div>
+    <h4 style="margin:5px 0px">## 최종 결제할 금액</h4>
+    <div>${price}원</div>
     `;
+
+    document.body.appendChild(priceSection);
   }
 }

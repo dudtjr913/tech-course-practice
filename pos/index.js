@@ -32,14 +32,11 @@ const submitMainOption = (e) => {
     return (mainInput.value = '');
   }
   paintUserInput(mainForm, mainInput.value);
-  if (mainInput.value === '1') {
-    return selectTable();
-  }
-  if (mainInput.value === '2') {
-    return showUserOrderMenu();
+  if (mainInput.value === '3') {
+    return finishGame();
   }
 
-  return finishGame();
+  return selectTable();
 };
 
 const isValidMainInput = (value) => {
@@ -63,9 +60,14 @@ const submitTableOption = (e) => {
   if (!isValidTableInput(tableInput.value)) {
     return (tableInput.value = '');
   }
-  paintUserInput(tableForm, tableInput.value);
+  if (mainInput.value === '2') {
+    return showUserOrderMenu();
+  }
+  if (mainInput.value === '1') {
+    paintUserInput(tableForm, tableInput.value);
 
-  return selectMenu();
+    return selectMenu();
+  }
 };
 
 const isValidTableInput = (value) => {
@@ -174,20 +176,84 @@ const isExMenu = (exUser) => {
 };
 
 const continueGame = () => {
-  console.log(order);
-  while (document.body.firstChild) {
-    document.body.removeChild(document.body.firstChild);
-  }
+  const menuSection = document.body.querySelector('#menu');
+  menuSection.id = '';
 
   return gameStart();
 };
 
 const showUserOrderMenu = () => {
-  console.log('order');
+  const userTable = findUserTable();
+  if (!userTable) {
+    return;
+  }
+  paintUserInput(tableForm, tableInput.value);
+  element.showOrderList(userTable.menu);
+
+  return makePayment();
+};
+
+const findUserTable = () => {
+  const userTable = order.find(
+    (user) => user.table === parseInt(tableInput.value),
+  );
+  if (!userTable) {
+    return alert('주문하신 내역이 없습니다.');
+  }
+
+  return userTable;
+};
+
+const makePayment = () => {
+  element.proceedWithPayment();
+  paymentForm = document.body.querySelector('#payment-form');
+
+  return paymentForm.addEventListener('submit', submitPaymentOption);
+};
+
+const submitPaymentOption = (e) => {
+  e.preventDefault();
+  paymentInput = paymentForm.querySelector('#payment-input');
+  if (!isValidPaymentInput(paymentInput.value)) {
+    return (paymentInput.value = '');
+  }
+  paintUserInput(paymentForm, paymentInput.value);
+  showPriceToUser();
+
+  return resetGame();
+};
+
+const isValidPaymentInput = (value) => {
+  if (value !== '1' && value !== '2') {
+    return alert('1,2번만 입력 가능합니다.');
+  }
+
+  return true;
+};
+
+const showPriceToUser = () => {
+  if (paymentInput.value === '2') {
+    return element.showOnUserPrice(element.allPlusPrice * 0.95);
+  }
+
+  return element.showOnUserPrice(element.allPlusPrice);
+};
+
+const resetGame = () => {
+  const userTableIndex = order.findIndex(
+    (user) => user.table === parseInt(tableInput.value),
+    10,
+  );
+  order.splice(userTableIndex, 1);
+  element.allPlusPrice = 0;
+  console.log(order, element.allPlusPrice);
+  return gameStart();
 };
 
 const finishGame = () => {
-  console.log(finish);
+  while (document.body.firstChild) {
+    document.body.removeChild(document.body.firstChild);
+  }
 };
 
 gameStart();
