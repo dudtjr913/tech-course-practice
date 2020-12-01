@@ -74,6 +74,29 @@ export default class BaseballGame {
 
     return `${ball}볼 ${strike}스트라이크`;
   }
+
+  getStrikeNumber(answer, userInput) {
+    let strike = 0;
+    answer.forEach((number, index) => {
+      if (number === parseInt(userInput[index], 10)) {
+        strike++;
+      }
+    });
+
+    return strike;
+  }
+
+  getBallNumber(answer, userInput) {
+    let ball = 0;
+    answer.forEach((number, index) => {
+      const userInputIndex = userInput.indexOf(number);
+      if (userInputIndex >= 0 && index !== userInputIndex) {
+        ball++;
+      }
+    });
+
+    return ball;
+  }
 }
 
 const a = new BaseballGame();
