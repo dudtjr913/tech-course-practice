@@ -22,7 +22,7 @@
 - [v] 위 두 메소드를 기존에 존재하는 play 메소드에서 각각 변수로 할당한다.
   **const strike = this.getStrikeNumber(); const ball = this.getBallNumber();**
 - [v] play 메소드에서 조건문을 사용해 ball과 strike를 string으로 return한다.
-- [] play 메소드의 return값을 submittedUserInput에서 받아 화면에 띄워줄 메소드를 호출한다. **showUserResult**
+- [v] play 메소드의 return값을 submittedUserInput에서 받아 화면에 띄워줄 메소드를 호출한다. **showUserResult**
 - [] strike가 3일 때 승리하여 게임이 종료되는 메소드를 구현한다. **gameFinish**
 - [] 다시 시작 할 수 있는 메소드를 구현한다. **gameRestart**
 
