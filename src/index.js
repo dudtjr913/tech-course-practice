@@ -1,6 +1,7 @@
 export default class BaseballGame {
   constructor() {
     this.answer = this.createAnswerNumber();
+    this.runningGame = true;
   }
 
   createAnswerNumber() {
@@ -36,6 +37,10 @@ export default class BaseballGame {
 
   onSubmittedUserInput(e) {
     e.preventDefault();
+    if (!this.runningGame) {
+      return alert('게임을 재시작해주세요.');
+    }
+
     const userInput = document.body.querySelector('#user-input');
     if (!this.isInputValid(userInput.value)) {
       return (userInput.value = '');
@@ -109,6 +114,7 @@ export default class BaseballGame {
 
   gameFinish() {
     const $resultDiv = document.body.querySelector('#result');
+    this.runningGame = false;
     $resultDiv.innerHTML = `
     <h3>🎉 정답을 맞추셨습니다! 🎉</h3>
     <div> 게임을 새로 시작하시겠습니까?
@@ -117,7 +123,17 @@ export default class BaseballGame {
     `;
     const $reStartBtn = document.body.querySelector('#game-restart-button');
 
-    return $reStartBtn.addEventListener('click', this.onGameReStart);
+    return $reStartBtn.addEventListener('click', this.onGameReStart.bind(this));
+  }
+
+  onGameReStart() {
+    const $resultDiv = document.body.querySelector('#result');
+    while ($resultDiv.firstChild) {
+      $resultDiv.removeChild($resultDiv.firstChild);
+    }
+    this.runningGame = true;
+
+    return (this.answer = this.createAnswerNumber());
   }
 }
 
