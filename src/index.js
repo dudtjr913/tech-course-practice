@@ -31,11 +31,24 @@ export default class BaseballGame {
 
   gameStart() {
     const $submitBtn = document.body.querySelector('#submit');
-    $submitBtn.addEventListener('submit', onSubmittedUserInput);
+    $submitBtn.addEventListener('click', this.onSubmittedUserInput);
   }
-  /*play(computerInputNumbers, userInputNumbers) {
-     return "결과 값 String";
-   }*/
+
+  onSubmittedUserInput(e) {
+    e.preventDefault();
+    const userInput = document.body.querySelector('#user-input');
+    if (!this.isInputValid(userInput.value)) {
+      return (userInput.value = '');
+    }
+    const resultText = this.play(this.answer, userInput.value);
+
+    return this.showUserResult(resultText);
+  }
+
+  play(computerInputNumbers, userInputNumbers) {
+    return '결과 값 String';
+  }
 }
 
-new BaseballGame();
+const a = new BaseballGame();
+a.gameStart();
