@@ -31,7 +31,7 @@ export default class BaseballGame {
 
   gameStart() {
     const $submitBtn = document.body.querySelector('#submit');
-    $submitBtn.addEventListener('click', this.onSubmittedUserInput);
+    $submitBtn.addEventListener('click', this.onSubmittedUserInput.bind(this));
   }
 
   onSubmittedUserInput(e) {
@@ -43,6 +43,20 @@ export default class BaseballGame {
     const resultText = this.play(this.answer, userInput.value);
 
     return this.showUserResult(resultText);
+  }
+
+  isInputValid(value) {
+    if (value.match(/\D/) || value.match(/0/)) {
+      return alert('1~9까지의 숫자를 입력해주세요.');
+    }
+    if (value.length !== 3) {
+      return alert('3자리의 숫자를 입력해주세요.');
+    }
+    if (value.length !== new Set(value).size) {
+      return alert('중복된 숫자를 입력하셨습니다.');
+    }
+
+    return true;
   }
 
   play(computerInputNumbers, userInputNumbers) {
