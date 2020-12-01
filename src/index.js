@@ -106,6 +106,19 @@ export default class BaseballGame {
 
     return ($resultDiv.innerText = result);
   }
+
+  gameFinish() {
+    const $resultDiv = document.body.querySelector('#result');
+    $resultDiv.innerHTML = `
+    <h3>🎉 정답을 맞추셨습니다! 🎉</h3>
+    <div> 게임을 새로 시작하시겠습니까?
+    <button id="game-restart-button">게임 재시작</button>
+    </div>
+    `;
+    const $reStartBtn = document.body.querySelector('#game-restart-button');
+
+    return $reStartBtn.addEventListener('click', this.onGameReStart);
+  }
 }
 
 const a = new BaseballGame();
