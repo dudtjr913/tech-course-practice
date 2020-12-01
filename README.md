@@ -8,13 +8,14 @@
   - [v] 랜덤하게 숫자를 뽑을 함수를 만든다. **selectRandomNumber**
 - [v] 사용자의 input을 받아 게임을 시작할 수 있는 메소드를 구현한다. - **gameStart**
 - [v] 사용자의 input을 받았을 때 input이 올바르다면 게임을 play할 메소드를 구현한다. **onSubmittedUserInput**
-- [] 사용자의 input이 유효한지 검사하는 메소드를 구현한다. **isInputValid**
-  - [] 예외처리)
-    - [] 0을 입력한 경우
-    - [] 빈 칸을 submit한 경우
-    - [] 숫자 이외의 문자를 입력한 경우
-    - [] 4자리 이상을 입력한 경우
-    - [] 2자리 이하를 입력한 경우
+- [v] 사용자의 input이 유효한지 검사하는 메소드를 구현한다. **isInputValid**
+  - [v] 예외처리)
+    - [v] 0을 입력한 경우
+    - [v] 빈 칸을 submit한 경우
+    - [v] 숫자 이외의 문자를 입력한 경우
+    - [v] 4자리 이상을 입력한 경우
+    - [v] 2자리 이하를 입력한 경우
+    - [v] 중복된 숫자를 입력한 경우
 - [] input이 유효하다면, submittedUserInput함수에서 play 메소드를 호출한다. **play(this.answer, userInput)**
 - [] userInput과 answer을 비교하여 strike를 결정하는 메소드를 구현한다. **isUserInputStrike**
 - [] userInput과 answer을 비교하여 ball 결정하는 메소드를 구현한다. **isUserInputBall**
