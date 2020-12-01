@@ -17,8 +17,8 @@
     - [v] 2자리 이하를 입력한 경우
     - [v] 중복된 숫자를 입력한 경우
 - [v] input이 유효하다면, submittedUserInput함수에서 play 메소드를 호출한다. **play(this.answer, userInput)**
-- [] userInput과 answer을 비교하여 strike를 결정하는 메소드를 구현한다. **getStrikeNumber**
-- [] userInput과 answer을 비교하여 ball 결정하는 메소드를 구현한다. **getBallNumber**
+- [v] userInput과 answer을 비교하여 strike를 결정하는 메소드를 구현한다. **getStrikeNumber**
+- [v] userInput과 answer을 비교하여 ball 결정하는 메소드를 구현한다. **getBallNumber**
 - [v] 위 두 메소드를 기존에 존재하는 play 메소드에서 각각 변수로 할당한다.
   **const strike = this.getStrikeNumber(); const ball = this.getBallNumber();**
 - [v] play 메소드에서 조건문을 사용해 ball과 strike를 string으로 return한다.
