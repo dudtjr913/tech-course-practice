@@ -6,7 +6,7 @@
 - [v] constructor에 정답을 변수에 할당한다. **this.answer = createAnswerNumber()**
   - [v] 1 ~ 9까지의 배열을 담을 함수를 만든다. **createMaxNumberArray**
   - [v] 랜덤하게 숫자를 뽑을 함수를 만든다. **selectRandomNumber**
-- [] 사용자의 input을 받아 게임을 시작할 수 있는 메소드를 구현한다. - **gameStart**
+- [v] 사용자의 input을 받아 게임을 시작할 수 있는 메소드를 구현한다. - **gameStart**
 - [] 사용자의 input을 받았을 때 input이 올바르다면 게임을 play할 메소드를 구현한다. **submittedUserInput**
 - [] 사용자의 input이 유효한지 검사하는 메소드를 구현한다. **isInputValid**
   - [] 예외처리)
