@@ -65,6 +65,7 @@ export default class BaseballGame {
   }
 
   play(computerInputNumbers, userInputNumbers) {
+    console.log(this.answer);
     const strike = this.getStrikeNumber(computerInputNumbers, userInputNumbers);
     const ball = this.getBallNumber(computerInputNumbers, userInputNumbers);
     if (!strike && !ball) {
@@ -113,20 +114,29 @@ export default class BaseballGame {
   }
 
   gameFinish() {
-    const $resultDiv = document.body.querySelector('#result');
     this.runningGame = false;
-    $resultDiv.innerHTML = `
-    <h3>🎉 정답을 맞추셨습니다! 🎉</h3>
-    <div> 게임을 새로 시작하시겠습니까?
-    <button id="game-restart-button">게임 재시작</button>
-    </div>
-    `;
+    this._createFinishText();
     const $reStartBtn = document.body.querySelector('#game-restart-button');
 
-    return $reStartBtn.addEventListener('click', this.onGameReStart.bind(this));
+    return $reStartBtn.addEventListener(
+      'click',
+      this._onGameReStart.bind(this),
+    );
   }
 
-  onGameReStart() {
+  _createFinishText() {
+    const $resultDiv = document.body.querySelector('#result');
+    const $reStartText = document.createElement('span');
+    const $reStartBtn = document.createElement('button');
+    $reStartBtn.id = 'game-restart-button';
+    $resultDiv.innerHTML = `<h3>🎉 정답을 맞추셨습니다! 🎉</h3>`;
+    $reStartText.innerText = '게임을 새로 시작하시겠습니까? ';
+    $reStartBtn.innerText = '게임 재시작';
+    $resultDiv.appendChild($reStartText);
+    $resultDiv.appendChild($reStartBtn);
+  }
+
+  _onGameReStart() {
     const $resultDiv = document.body.querySelector('#result');
     while ($resultDiv.firstChild) {
       $resultDiv.removeChild($resultDiv.firstChild);
