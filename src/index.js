@@ -1,4 +1,8 @@
 export default class BaseballGame {
+  constructor() {
+    this.answer = this.createAnswerNumber();
+  }
+
   createAnswerNumber() {
     const array = this._createMaxNumberArray();
     const answerArray = [];
