@@ -1,10 +1,10 @@
 export default class BaseballGame {
   constructor() {
-    this.answer = this.createAnswerNumber();
+    this.answer = this._createAnswerNumber();
     this.runningGame = true;
   }
 
-  createAnswerNumber() {
+  _createAnswerNumber() {
     const array = this._createMaxNumberArray();
     const answerArray = [];
     while (answerArray.length !== 3) {
@@ -66,8 +66,8 @@ export default class BaseballGame {
 
   play(computerInputNumbers, userInputNumbers) {
     console.log(this.answer);
-    const strike = this.getStrikeNumber(computerInputNumbers, userInputNumbers);
-    const ball = this.getBallNumber(computerInputNumbers, userInputNumbers);
+    const strike = this._getStrike(computerInputNumbers, userInputNumbers);
+    const ball = this._getBall(computerInputNumbers, userInputNumbers);
     if (!strike && !ball) {
       return `낫싱`;
     }
@@ -81,7 +81,7 @@ export default class BaseballGame {
     return `${ball}볼 ${strike}스트라이크`;
   }
 
-  getStrikeNumber(answer, userInput) {
+  _getStrike(answer, userInput) {
     let strike = 0;
     answer.forEach((number, index) => {
       if (number === parseInt(userInput[index], 10)) {
@@ -92,7 +92,7 @@ export default class BaseballGame {
     return strike;
   }
 
-  getBallNumber(answer, userInput) {
+  _getBall(answer, userInput) {
     let ball = 0;
     answer.forEach((number, index) => {
       const userInputIndex = userInput.indexOf(number);
@@ -107,13 +107,13 @@ export default class BaseballGame {
   showUserResult(result) {
     const $resultDiv = document.body.querySelector('#result');
     if (result === '3스트라이크') {
-      return this.gameFinish();
+      return this._gameFinish();
     }
 
     return ($resultDiv.innerText = result);
   }
 
-  gameFinish() {
+  _gameFinish() {
     this.runningGame = false;
     this._createFinishText();
     this._gameReStart();
@@ -145,7 +145,7 @@ export default class BaseballGame {
     }
     $userInput.value = '';
     this.runningGame = true;
-    this.answer = this.createAnswerNumber();
+    this.answer = this._createAnswerNumber();
   }
 }
 
