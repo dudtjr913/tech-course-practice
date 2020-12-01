@@ -97,6 +97,15 @@ export default class BaseballGame {
 
     return ball;
   }
+
+  showUserResult(result) {
+    const $resultDiv = document.body.querySelector('#result');
+    if (result === '3스트라이크') {
+      return this.gameFinish();
+    }
+
+    return ($resultDiv.innerText = result);
+  }
 }
 
 const a = new BaseballGame();
