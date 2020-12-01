@@ -7,8 +7,8 @@
 - [v] constructor에 정답을 변수에 할당한다. **this.answer = createAnswerNumber()**
   - [v] 1 ~ 9까지의 배열을 담을 함수를 만든다. **createMaxNumberArray**
   - [v] 랜덤하게 숫자를 뽑을 함수를 만든다. **selectRandomNumber**
-- [v] 사용자의 input을 받아 게임을 시작할 수 있는 메소드를 구현한다. - **gameStart**
-- [v] 사용자의 input을 받았을 때 input이 올바르다면 게임을 play할 메소드를 구현한다. **onSubmittedUserInput**
+- ~~[v] 사용자의 input을 받아 게임을 시작할 수 있는 메소드를 구현한다. - **gameStart**~~
+- [v] 사용자의 input을 받았을 때 input이 올바르다면 게임을 play할 함수를 gameplay.js에 구현한다. **onSubmittedUserInput**
 - [v] this.runningGame이 false일 경우 게임이 종료된 경우이기 때문에 경고창을 띄워 submit을 막는다.
 - [v] 사용자의 input이 유효한지 검사하는 메소드를 구현한다. **isInputValid**
   - [v] 예외처리)
@@ -26,7 +26,9 @@
 - [v] play 메소드에서 조건문을 사용해 ball과 strike를 string으로 return한다.
 - [v] play 메소드의 return값을 submittedUserInput에서 받아 화면에 띄워줄 메소드를 호출한다. **showUserResult**
 - [v] strike가 3일 때 승리하여 게임이 종료되는 메소드를 구현한다. **gameFinish**
-- [v] 다시 시작 할 수 있는 메소드를 구현한다. **onGameRestart**
+  - [v] 종료됐다는 text를 화면에 표시하는 메소드를 구현한다. **createFinishText**
+- [v] 다시 시작하기 버튼을 만드는 메소드를 구현한다. **gameReStart**
+- [v] 다시 시작하기 위해 초기화를 하는 메소드를 구현한다. **onInit**
 
 ## 🎯 기능 요구사항
 
