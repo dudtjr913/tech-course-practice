@@ -116,12 +116,7 @@ export default class BaseballGame {
   gameFinish() {
     this.runningGame = false;
     this._createFinishText();
-    const $reStartBtn = document.body.querySelector('#game-restart-button');
-
-    return $reStartBtn.addEventListener(
-      'click',
-      this._onGameReStart.bind(this),
-    );
+    this._gameReStart();
   }
 
   _createFinishText() {
@@ -136,14 +131,21 @@ export default class BaseballGame {
     $resultDiv.appendChild($reStartBtn);
   }
 
-  _onGameReStart() {
+  _gameReStart() {
+    const $reStartBtn = document.body.querySelector('#game-restart-button');
+
+    return $reStartBtn.addEventListener('click', this._onInit.bind(this));
+  }
+
+  _onInit() {
     const $resultDiv = document.body.querySelector('#result');
+    const $userInput = document.body.querySelector('#user-input');
     while ($resultDiv.firstChild) {
       $resultDiv.removeChild($resultDiv.firstChild);
     }
+    $userInput.value = '';
     this.runningGame = true;
-
-    return (this.answer = this.createAnswerNumber());
+    this.answer = this.createAnswerNumber();
   }
 }
 
