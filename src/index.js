@@ -60,7 +60,19 @@ export default class BaseballGame {
   }
 
   play(computerInputNumbers, userInputNumbers) {
-    return '결과 값 String';
+    const strike = this.getStrikeNumber(computerInputNumbers, userInputNumbers);
+    const ball = this.getBallNumber(computerInputNumbers, userInputNumbers);
+    if (!strike && !ball) {
+      return `낫싱`;
+    }
+    if (!strike) {
+      return `${ball}볼`;
+    }
+    if (!ball) {
+      return `${strike}스트라이크`;
+    }
+
+    return `${ball}볼 ${strike}스트라이크`;
   }
 }
 
