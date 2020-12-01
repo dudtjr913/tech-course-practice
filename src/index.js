@@ -28,10 +28,14 @@ export default class BaseballGame {
 
     return numberIndex;
   }
+
+  gameStart() {
+    const $submitBtn = document.body.querySelector('#submit');
+    $submitBtn.addEventListener('submit', onSubmittedUserInput);
+  }
   /*play(computerInputNumbers, userInputNumbers) {
      return "결과 값 String";
    }*/
 }
 
-const a = new BaseballGame();
-a.createAnswerNumber();
+new BaseballGame();
