@@ -30,26 +30,6 @@ export default class BaseballGame {
     return numberIndex;
   }
 
-  gameStart() {
-    const $submitBtn = document.body.querySelector('#submit');
-    $submitBtn.addEventListener('click', this.onSubmittedUserInput.bind(this));
-  }
-
-  onSubmittedUserInput(e) {
-    e.preventDefault();
-    if (!this.runningGame) {
-      return alert('게임을 재시작해주세요.');
-    }
-
-    const userInput = document.body.querySelector('#user-input');
-    if (!this.isInputValid(userInput.value)) {
-      return (userInput.value = '');
-    }
-    const resultText = this.play(this.answer, userInput.value);
-
-    return this.showUserResult(resultText);
-  }
-
   isInputValid(value) {
     if (value.match(/\D/) || value.match(/0/)) {
       return alert('1~9까지의 숫자를 입력해주세요.');
@@ -148,6 +128,3 @@ export default class BaseballGame {
     this.answer = this._createAnswerNumber();
   }
 }
-
-const a = new BaseballGame();
-a.gameStart();
