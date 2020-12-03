@@ -1,6 +1,7 @@
 import Car from './class/car.js';
 import moveCar from './module/move.js';
 import showOnProgress from './module/progress.js';
+import showWinner from './module/winner.js';
 
 export default class RacingCarGame {
   constructor() {
@@ -16,5 +17,7 @@ export default class RacingCarGame {
       this.participants.forEach((car) => moveCar(car));
       showOnProgress(this.participants);
     }
+
+    return showWinner(this.participants);
   }
 }

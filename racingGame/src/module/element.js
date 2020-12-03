@@ -17,3 +17,11 @@ export const makeResultText = (cars) => {
   $resultDiv.style.marginBottom = '30px';
   $resultWrapper.appendChild($resultDiv);
 };
+
+export const makeWinnerText = (winner) => {
+  console.log(winner);
+  const $resultWrapper = document.body.querySelector('#result-wrapper');
+  const $winnerDiv = document.createElement('div');
+  $winnerDiv.textContent = `최종 우승자: ${winner}`;
+  $resultWrapper.appendChild($winnerDiv);
+};
