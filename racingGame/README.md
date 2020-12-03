@@ -2,8 +2,8 @@
 
 ## ✔ 기능 구현 목록
 
-- [] 추가 요구사항에 따라 html의 input, button에 id를 추가한다.
-- [] html에서 자동차 이름을 입력하는 요소를 제외하고 display:none으로 감추고, id를 부여한다.
+- [v] 추가 요구사항에 따라 html의 input, button에 id를 추가한다.
+- [v] html에서 자동차 이름을 입력하는 요소를 제외하고 display:none으로 감추고, id를 부여한다.
 - [] Car class에 이름과 거리를 프로퍼티로 가질 수 있도록 만든다.
 - [] 유저가 자동차 이름을 입력할 수 있는 함수를 구현한다.
   - [] eventListener와 연결한다.
