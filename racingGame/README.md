@@ -13,8 +13,8 @@
       - [v] 특수문자를 입력했을 때
       - [v] 빈 칸을 입력했을 때
       - [v] 중복된 이름을 입력했을 때
-- [] RacingCar class의 프로퍼티로 참여할 자동차를 담을 배열을 할당한다.
-- [] RaicngCar class에 참여할 자동차를 push할 메소드를 구현한다.
+- [v] RacingCar class의 프로퍼티로 참여할 자동차를 담을 배열을 할당한다.
+- [v] RaicngCar class에 참여할 자동차를 push할 메소드를 구현한다.
 - [] 자동차 이름 입력이 유효하다면 위의 메소드를 호출한다.
 - [] 횟수 입력 칸을 display : block으로 만들어주는 함수를 구현한다.
   - [] eventListener를 해제한다.
