@@ -43,5 +43,16 @@ const onSubmittedCount = (e) => {
   return e.target.removeEventListener('click', onSubmittedCount);
 };
 
+const isCountValid = (value) => {
+  if (value <= 0) {
+    return alert('1 이상의 숫자를 입력해주세요.');
+  }
+  if (value.match(/\D/)) {
+    return alert('숫자를 입력해주세요.');
+  }
+
+  return true;
+};
+
 $carNameSubmitBtn.addEventListener('click', onSubmittedName);
 $CountSubmitBtn.addEventListener('click', onSubmittedCount);
