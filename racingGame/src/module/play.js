@@ -1,5 +1,5 @@
 import RacingCarGame from '../index.js';
-import {showCountElement} from './element.js';
+import {showCountElement, showResultElement} from './element.js';
 
 const racingCarGame = new RacingCarGame();
 const $carNameSubmitBtn = document.body.querySelector('#car-names-submit');
@@ -39,6 +39,8 @@ const onSubmittedCount = (e) => {
   if (!isCountValid($countInput.value)) {
     return ($countInput.value = '');
   }
+  racingCarGame.gamePlay($countInput.value);
+  showResultElement();
 
   return e.target.removeEventListener('click', onSubmittedCount);
 };
