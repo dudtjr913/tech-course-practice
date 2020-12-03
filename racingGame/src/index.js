@@ -1,4 +1,5 @@
 import Car from './class/car.js';
+import moveCar from './module/move.js';
 
 export default class RacingCarGame {
   constructor() {
@@ -8,6 +9,10 @@ export default class RacingCarGame {
   pushParticipants(cars) {
     cars.forEach((car) => this.participants.push(new Car(car)));
   }
-}
 
-new RacingCarGame();
+  gamePlay(count) {
+    for (let i = 0; i < count; i++) {
+      this.participants.forEach((car) => moveCar(car));
+    }
+  }
+}
