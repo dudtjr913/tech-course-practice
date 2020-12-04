@@ -1,9 +1,9 @@
 import {$countWrapper, $resultWrapper} from '../utils.js';
 
-export const showCountElement = () => {
+export const hideCountElement = () => {
   $countWrapper.style.display = 'none';
 };
 
-export const showResultElement = () => {
+export const hideResultElement = () => {
   $resultWrapper.style.display = 'none';
 };

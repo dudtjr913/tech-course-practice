@@ -2,7 +2,7 @@ import Car from './class/car.js';
 import moveCar from './module/move.js';
 import showOnProgress from './module/progress.js';
 import showWinner from './module/winner.js';
-import {gameStart} from './module/play.js';
+import {gameStart, gameRestart} from './module/play.js';
 
 export default class RacingCarGame {
   constructor() {
@@ -18,8 +18,9 @@ export default class RacingCarGame {
       this.participants.forEach((car) => moveCar(car));
       showOnProgress(this.participants);
     }
+    showWinner(this.participants);
 
-    return showWinner(this.participants);
+    return gameRestart();
   }
 }
 

@@ -14,3 +14,12 @@ export const createWinnerText = (winner) => {
   $winnerDiv.textContent = `최종 우승자: ${winner}`;
   $resultWrapper.appendChild($winnerDiv);
 };
+
+export const createRestartButton = () => {
+  const $restartButton = document.createElement('button');
+  $restartButton.textContent = '다시하기';
+  $restartButton.id = 'restart-btn';
+  $resultWrapper.appendChild($restartButton);
+
+  return $restartButton;
+};
