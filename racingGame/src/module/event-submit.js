@@ -1,4 +1,4 @@
-import {showCountElement, showResultElement} from './element.js';
+import {showCountElement, showResultElement} from './element/showElement.js';
 import {racingCarGame} from './play.js';
 import {$carNameInput, $countInput} from './utils.js';
 import isInputValid from './inputvalid.js';

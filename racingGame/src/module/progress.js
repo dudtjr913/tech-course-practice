@@ -1,5 +1,5 @@
-import {makeResultText} from './element.js';
+import {createResultText} from './element/createElement.js';
 
 export default function showOnProgress(cars) {
-  makeResultText(cars);
+  createResultText(cars);
 }

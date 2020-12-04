@@ -1,8 +1,8 @@
-import {makeWinnerText} from './element.js';
+import {createWinnerText} from './element/createElement.js';
 
 export default function showWinner(cars) {
   const winner = checkWinner(cars);
-  makeWinnerText(winner.join(', '));
+  createWinnerText(winner.join(', '));
 }
 
 const checkWinner = (cars) => {
