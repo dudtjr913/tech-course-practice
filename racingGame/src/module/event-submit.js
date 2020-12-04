@@ -1,9 +1,9 @@
 import {showCountElement, showResultElement} from './element.js';
 import {racingCarGame} from './play.js';
+import {$carNameInput, $countInput} from './utils.js';
 import isInputValid from './inputvalid.js';
 
 export const onSubmittedName = (e) => {
-  const $carNameInput = document.body.querySelector('#car-names-input');
   const splitedValue = $carNameInput.value.split(',');
   if (!isInputValid(splitedValue)) {
     return ($carNameInput.value = '');
@@ -15,7 +15,6 @@ export const onSubmittedName = (e) => {
 };
 
 export const onSubmittedCount = (e) => {
-  const $countInput = document.body.querySelector('#racing-count-input');
   if (!isInputValid($countInput.value)) {
     return ($countInput.value = '');
   }
