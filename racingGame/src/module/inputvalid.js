@@ -27,7 +27,7 @@ const isCountValid = (value) => {
 };
 
 export default function isInputValid(value) {
-  if (typeof value === 'object') {
+  if (Array.isArray(value)) {
     return isNameValid(value);
   }
   if (typeof value === 'string') {
