@@ -11,4 +11,4 @@ export const menuList = [
   new Menu('음료', 22, '사이다', 1000),
 ];
 
-export const table = [1, 2, 3, 5, 6, 8];
+export const tableList = [1, 2, 3, 5, 6, 8];

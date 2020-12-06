@@ -1,5 +1,5 @@
 import Screen from './class/screen.js';
-import {menuList, table} from './utils.js';
+import {menuList, tableList} from './utils.js';
 
 class Pos {
   constructor(tableList, menuList) {
