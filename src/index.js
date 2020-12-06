@@ -9,7 +9,7 @@ export default class Pos {
   }
 
   pushUserTable(tableNumber) {
-    if (this.findUserTable()) {
+    if (this.findUserTable(tableNumber)) {
       return null;
     }
     this.paintUserTable(tableNumber);
@@ -17,8 +17,20 @@ export default class Pos {
     return this.selectedTableMenu.push({table: tableNumber});
   }
 
-  findUserTable() {
-    const userTable = this.selectedTableMenu.find((user) => user.table);
+  pushUserMenu(tableNumber, menuNumber) {
+    const userTable = this.findUserTable(tableNumber);
+    const userMenu = this.findUserMenu(menuNumber);
+    if (userMenu) {
+      return null;
+    }
+
+    userTable.menu = userMenu;
+  }
+
+  findUserTable(tableNumber) {
+    const userTable = this.selectedTableMenu.find(
+      (user) => user.table === tableNumber,
+    );
 
     return userTable;
   }
@@ -26,5 +38,13 @@ export default class Pos {
   paintUserTable(userTableNumber) {
     const $userTable = document.body.querySelector(`#table-${userTableNumber}`);
     $userTable.style.backgroundColor = 'red';
+  }
+
+  findUserMenu(menuNumber) {
+    const userMenu = this.menuList.find(
+      (menu) => menu.number === parseInt(menuNumber, 10),
+    );
+
+    return userMenu;
   }
 }

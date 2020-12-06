@@ -46,7 +46,7 @@ const onSubmitTableToRegister = (e) => {
   }
   e.target.removeEventListener('submit', onSubmitTableToRegister);
   userTableNumber = userTable.value;
-  pos.pushUserTable(userTable.value);
+  pos.pushUserTable(userTableNumber);
   console.log(pos);
 
   return selectMenu();
@@ -66,7 +66,8 @@ const onSubmitMenu = (e) => {
   }
   e.target.removeEventListener('submit', onSubmitMenu);
   userMenuNumber = userMenu.value;
-
+  pos.pushUserMenu(userTableNumber, userMenuNumber);
+  console.log(pos);
   return enterMenuCount();
 };
 
