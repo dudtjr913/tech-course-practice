@@ -19,3 +19,5 @@ export const menuList = [
 ];
 
 export const tableList = [1, 2, 3, 5, 6, 8];
+
+export const MAX_MENU_NUMBER = 99;

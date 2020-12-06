@@ -83,11 +83,11 @@ export default class Screen {
     document.body.querySelector('#pos').appendChild($menuSection);
   }
 
-  createMenuNumberInput() {
+  createMenuCountInput() {
     const $menuContainer = document.createElement('div');
     $menuContainer.innerHTML = `
       <b>## 메뉴의 수량을 입력하세요.</b>
-      <form onsubmit="return false" id="menu-number">
+      <form onsubmit="return false" id="menu-count">
         <input />
       </form>
       <br/>`;

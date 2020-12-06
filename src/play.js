@@ -6,6 +6,8 @@ import checkScope from './scope.js';
 
 const screen = new Screen(optionList, tableList, menuList);
 const pos = new Pos(tableList, menuList);
+let userTableNumber = null;
+let userMenuNumber = null;
 
 const gameStart = () => {
   screen.createMainScreen();
@@ -43,10 +45,63 @@ const onSubmitTableToRegister = (e) => {
     return (userTable.value = '');
   }
   e.target.removeEventListener('submit', onSubmitTableToRegister);
+  userTableNumber = userTable.value;
 
   return selectMenu();
 };
 
-const selectMenu = () => {};
+const selectMenu = () => {
+  screen.createMenuList();
+  document.body
+    .querySelector('#menu-select')
+    .addEventListener('submit', onSubmitMenu);
+};
+
+const onSubmitMenu = (e) => {
+  const userMenu = e.target.children[0];
+  if (isInputValid(userMenu.value, checkScope(menuList))) {
+    return (userMenu.value = '');
+  }
+  e.target.removeEventListener('submit', onSubmitMenu);
+  userMenuNumber = userMenu.value;
+
+  return enterMenuCount();
+};
+
+const enterMenuCount = () => {
+  screen.createMenuNumberInput();
+  document.body
+    .querySelector('#menu-count')
+    .addEventListener('submit', onSubmitMenuCount);
+};
+
+const onSubmitMenuCount = (e) => {
+  const menuCount = e.target.children[0];
+  const count = finduserMenuCount();
+  if (!isInputValid(menuCount.value, count)) {
+    return (menuCount.value = '');
+  }
+  e.target.removeEventListener('submit', onSubmitMenuCount);
+
+  return gameStart();
+};
+
+const finduserMenuCount = () => {
+  const userTable = findUserTable();
+  if (userTable) {
+    const userMenu = userTable.find((menu) => menu === userMenuNumber);
+    return userMenu ? userMenu.count : null;
+  }
+
+  return null;
+};
+
+const findUserTable = () => {
+  const userTable = pos.selectedTableMenu.find(
+    (table) => table === userTableNumber,
+  );
+
+  return userTable;
+};
 
 gameStart();
