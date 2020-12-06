@@ -3,8 +3,9 @@ import {optionList, tableList, menuList} from './utils.js';
 import isInputValid from './inputvalid.js';
 import checkScope from './scope.js';
 
+const screen = new Screen(optionList, tableList, menuList);
+
 const gameStart = () => {
-  const screen = new Screen(optionList, tableList, menuList);
   screen.createMainScreen();
   document.body
     .querySelector('#option-select')
@@ -12,16 +13,30 @@ const gameStart = () => {
 };
 
 const onSubmitOption = (e) => {
-  e.preventDefault();
   const userOption = e.target.children[0];
   if (!isInputValid(userOption.value, checkScope(optionList))) {
     return (userOption.value = '');
   }
-  if (userOption.value === '3') {
-    return gameFinish();
+  e.target.removeEventListener('submit', onSubmitOption);
+  if (userOption.value === '1') {
+    return selectTableToRegister();
+  }
+  if (userOption.value === '2') {
+    return selectTableToPay();
   }
 
-  return selectTable(userOption.value);
+  return gameFinish();
+};
+
+const selectTableToRegister = () => {
+  screen.createTableList();
+  document.body
+    .querySelector('#table-select')
+    .addEventListener('submit', onSubmitTableToRegister);
+};
+
+const onSubmitTableToRegister = (e) => {
+  const userTable = e.target.children[0];
 };
 
 gameStart();

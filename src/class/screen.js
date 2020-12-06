@@ -24,7 +24,7 @@ export default class Screen {
     $mainSection.innerHTML += `
     <br/>
     <b>## 원하는 기능을 선택하세요.</b>
-      <form id="option-select">
+      <form onsubmit="return false" id="option-select">
         <input />
       </form>
     <br/>
@@ -52,7 +52,7 @@ export default class Screen {
   createSelectTableInput($tableSection) {
     $tableSection.innerHTML += `
      <b>## 테이블을 선택하세요.</b>
-      <form id="table-select">
+      <form onsubmit="return false" id="table-select">
         <input />
       </form>
       <br/>
@@ -75,7 +75,7 @@ export default class Screen {
   createSelectMenuInput($menuSection) {
     $menuSection.innerHTML += `
      <b>## 등록할 메뉴를 선택하세요.</b>
-      <form id="menu-select">
+      <form onsubmit="return false" id="menu-select">
         <input />
       </form>
       <br/>
@@ -87,7 +87,7 @@ export default class Screen {
     const $menuContainer = document.createElement('div');
     $menuContainer.innerHTML = `
       <b>## 메뉴의 수량을 입력하세요.</b>
-      <form id="menu-number">
+      <form onsubmit="return false" id="menu-number">
         <input />
       </form>
       <br/>`;
@@ -115,7 +115,7 @@ export default class Screen {
     $paymentSection.innerHTML = `
     <b>## ${table}번 테이블의 결제를 진행합니다.</b>
     <b>## 신용 카드는 1번, 현금은 2번</b>
-    <form id="payment-means">
+    <form onsubmit="return false" id="payment-means">
       <input />
     </form>
     </br>
