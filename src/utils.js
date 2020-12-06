@@ -1,4 +1,11 @@
 import Menu from './class/menu.js';
+import Option from './class/option.js';
+
+export const optionList = [
+  new Option(1, '주문등록'),
+  new Option(2, '결제하기'),
+  new Option(3, '프로그램 종료'),
+];
 
 export const menuList = [
   new Menu('치킨', 1, '후라이드', 16000),

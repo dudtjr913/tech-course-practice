@@ -1,28 +1,33 @@
 export default class Screen {
-  constructor(tableList, menuList) {
+  constructor(optionList, tableList, menuList) {
+    this.optionList = optionList;
     this.tableList = tableList;
     this.menuList = menuList;
   }
 
   createMainScreen() {
     const $mainSection = document.createElement('section');
+    const $optionDiv = document.createElement('div');
     $mainSection.innerHTML = `
       <b>## 메인화면</b>
-      <div>1 - 주문등록</div>
-      <div>2 - 결제하기</div>
-      <div>3 - 프로그램 종료</div>
-      <br/>
     `;
+    this.optionList.forEach((option) => {
+      $optionDiv.innerHTML += `
+        <div>${option.number} - ${option.value}</div>
+        `;
+    });
+    $mainSection.appendChild($optionDiv);
     this.createSelectOptionInput($mainSection);
   }
 
   createSelectOptionInput($mainSection) {
     $mainSection.innerHTML += `
-     <b>## 원하는 기능을 선택하세요.</b>
+    <br/>
+    <b>## 원하는 기능을 선택하세요.</b>
       <form id="option-select">
         <input />
       </form>
-      <br/>
+    <br/>
     `;
     document.body.querySelector('#pos').appendChild($mainSection);
   }
