@@ -41,7 +41,7 @@ export default class Screen {
     `;
     this.tableList.forEach((table) => {
       $tableUl.innerHTML += `
-      <li>${table}</li>
+      <li id=table-${table}>${table}</li>
       `;
     });
     $tableSection.appendChild($tableUl);
@@ -103,7 +103,7 @@ export default class Screen {
       `;
     orderList.forEach((order) => {
       $orderUl.innerHTML += `
-        <li>${order.name} ${order.number} ${order.price}</li>
+        <li id=order-${order.number}>${order.name} ${order.number} ${order.price}</li>
         `;
     });
     $orderSection.appendChild($orderUl);

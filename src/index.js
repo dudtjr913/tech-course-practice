@@ -12,6 +12,7 @@ export default class Pos {
     if (this.findUserTable()) {
       return null;
     }
+    this.paintUserTable(tableNumber);
 
     return this.selectedTableMenu.push({table: tableNumber});
   }
@@ -20,5 +21,10 @@ export default class Pos {
     const userTable = this.selectedTableMenu.find((user) => user.table);
 
     return userTable;
+  }
+
+  paintUserTable(userTableNumber) {
+    const $userTable = document.body.querySelector(`#table-${userTableNumber}`);
+    $userTable.style.backgroundColor = 'red';
   }
 }
