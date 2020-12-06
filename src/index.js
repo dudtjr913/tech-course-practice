@@ -1,8 +1,10 @@
 import Screen from './class/screen.js';
-import {menuList} from './utils.js';
+import {menuList, table} from './utils.js';
 
-const a = new Screen([1, 2, 3, 4, 5, 6], menuList);
-a.createMainScreen();
-a.createTableList();
-a.createMenuList();
-a.createMenuNumberInput();
+class Pos {
+  constructor(tableList, menuList) {
+    this.tableList = tableList;
+    this.menuList = menuList;
+    this.selectedTableMenu = [];
+  }
+}
