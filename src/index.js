@@ -7,4 +7,18 @@ export default class Pos {
     this.menuList = menuList;
     this.selectedTableMenu = [];
   }
+
+  pushUserTable(tableNumber) {
+    if (this.findUserTable()) {
+      return null;
+    }
+
+    return this.selectedTableMenu.push({table: tableNumber});
+  }
+
+  findUserTable() {
+    const userTable = this.selectedTableMenu.find((user) => user.table);
+
+    return userTable;
+  }
 }

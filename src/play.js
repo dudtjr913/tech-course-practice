@@ -46,6 +46,8 @@ const onSubmitTableToRegister = (e) => {
   }
   e.target.removeEventListener('submit', onSubmitTableToRegister);
   userTableNumber = userTable.value;
+  pos.pushUserTable(userTable.value);
+  console.log(pos);
 
   return selectMenu();
 };
@@ -59,7 +61,7 @@ const selectMenu = () => {
 
 const onSubmitMenu = (e) => {
   const userMenu = e.target.children[0];
-  if (isInputValid(userMenu.value, checkScope(menuList))) {
+  if (!isInputValid(userMenu.value, checkScope(menuList))) {
     return (userMenu.value = '');
   }
   e.target.removeEventListener('submit', onSubmitMenu);
@@ -69,7 +71,7 @@ const onSubmitMenu = (e) => {
 };
 
 const enterMenuCount = () => {
-  screen.createMenuNumberInput();
+  screen.createMenuCountInput();
   document.body
     .querySelector('#menu-count')
     .addEventListener('submit', onSubmitMenuCount);
@@ -89,7 +91,9 @@ const onSubmitMenuCount = (e) => {
 const finduserMenuCount = () => {
   const userTable = findUserTable();
   if (userTable) {
-    const userMenu = userTable.find((menu) => menu === userMenuNumber);
+    const userMenu = userTable.menu.find(
+      (menu) => menu.number === userMenuNumber,
+    );
     return userMenu ? userMenu.count : null;
   }
 
@@ -98,7 +102,7 @@ const finduserMenuCount = () => {
 
 const findUserTable = () => {
   const userTable = pos.selectedTableMenu.find(
-    (table) => table === userTableNumber,
+    (pos) => pos.table === userTableNumber,
   );
 
   return userTable;
