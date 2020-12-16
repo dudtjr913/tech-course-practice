@@ -6,6 +6,10 @@ export default class Blackjack {
 
   getCards() {}
 
+  getPlayers(players) {
+    return players.forEach((name) => this.players.push({name}));
+  }
+
   betPlayer(player, amount) {}
 
   handOutCards() {}
