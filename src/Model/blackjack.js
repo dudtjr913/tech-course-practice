@@ -16,7 +16,10 @@ export default class Blackjack {
     return players.forEach((name) => this.players.push({name}));
   }
 
-  betPlayer(player, amount) {}
+  betPlayer(playerName, amount) {
+    const nowPlayer = this.players.find((player) => player.name === playerName);
+    nowPlayer.betting = amount;
+  }
 
   handOutCards() {}
 

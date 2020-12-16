@@ -1,11 +1,31 @@
 import {$playerNameInput} from '../View/element.js';
-import {isNameInputValid} from './valid.js';
+import {addBettingScreen} from '../View/addScreen.js';
+import {isNameInputValid, isAmountValid} from './valid.js';
 import {blackjackGame} from '../index.js';
 
 export const onSubmitPlayerName = () => {
   const splitedInput = $playerNameInput.value.split(',');
   if (isNameInputValid(splitedInput)) {
     blackjackGame.getPlayers(splitedInput);
-    console.log(blackjackGame);
+    getBettingAmount(blackjackGame.players);
+  }
+};
+
+const getBettingAmount = (players) => {
+  players.forEach((player) => {
+    addBettingScreen(player.name);
+    const $button = document.body.querySelector(
+      `#${player.name}-amount > button`,
+    );
+    $button.addEventListener('click', onSubmitAmount);
+  });
+};
+
+const onSubmitAmount = (e) => {
+  const $input = e.target.previousElementSibling;
+  if (isAmountValid($input.value)) {
+    e.target.removeEventListener('click', onSubmitAmount);
+
+    return blackjackGame.betPlayer(e.target.dataset.player, $input.value);
   }
 };
