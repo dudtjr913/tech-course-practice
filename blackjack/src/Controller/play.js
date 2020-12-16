@@ -1,5 +1,5 @@
 import {$playerNameInput} from '../View/element.js';
-import {addBettingScreen} from '../View/addScreen.js';
+import {addBettingScreen, addHandOutCardScreen} from '../View/addScreen.js';
 import {isNameInputValid, isAmountValid} from './valid.js';
 import {blackjackGame} from '../index.js';
 
@@ -10,7 +10,8 @@ export const onSubmitPlayerName = () => {
   if (isNameInputValid(splitedInput)) {
     blackjackGame.getPlayers(splitedInput);
     blackjackGame.players.forEach((player) => copyPlayers.push(player.name));
-    getBettingAmount();
+
+    return getBettingAmount();
   }
 };
 
@@ -33,7 +34,9 @@ const onSubmitAmount = (e) => {
 
 const checkSubmitAmountFinish = () => {
   if (copyPlayers[0] === undefined) {
-    return blackjackGame.handOutCards();
+    blackjackGame.handOutCards();
+
+    return addHandOutCardScreen(blackjackGame.players, blackjackGame.dealer);
   }
 
   return getBettingAmount();
