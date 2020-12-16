@@ -25,7 +25,14 @@ const onSubmitAmount = (e) => {
   const $input = e.target.previousElementSibling;
   if (isAmountValid($input.value)) {
     e.target.removeEventListener('click', onSubmitAmount);
+    blackjackGame.betPlayer(e.target.dataset.player, $input.value);
 
-    return blackjackGame.betPlayer(e.target.dataset.player, $input.value);
+    return checkSubmitAmountFinish(e.target.dataset.player);
+  }
+};
+
+const checkSubmitAmountFinish = (player) => {
+  if (player === blackjackGame.players[blackjackGame.players.length - 1].name) {
+    blackjackGame.handOutCards();
   }
 };

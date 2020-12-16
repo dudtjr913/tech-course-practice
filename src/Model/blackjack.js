@@ -4,6 +4,7 @@ export default class Blackjack {
   constructor() {
     this.cards = [];
     this.players = [];
+    this.dealer = {};
   }
 
   getCards() {
@@ -21,7 +22,13 @@ export default class Blackjack {
     nowPlayer.betting = amount;
   }
 
-  handOutCards() {}
+  handOutCards() {
+    this.dealer.cards = drawCard(this.cards);
+
+    for (let i = 0; i < this.players.length; i++) {
+      this.players[i].cards = drawCard(this.cards);
+    }
+  }
 
   takeMoreCard(player) {}
 
@@ -29,3 +36,14 @@ export default class Blackjack {
 
   calculateProfit() {}
 }
+
+const drawCard = (cards) => {
+  const drawnCards = [];
+  while (drawnCards.length < 2) {
+    const randomNumber = Math.floor(Math.random() * cards.length);
+    const deletedCard = cards.splice(randomNumber, 1);
+    drawnCards.push(...deletedCard);
+  }
+
+  return drawnCards;
+};
