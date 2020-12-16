@@ -3,22 +3,22 @@ import {addBettingScreen} from '../View/addScreen.js';
 import {isNameInputValid, isAmountValid} from './valid.js';
 import {blackjackGame} from '../index.js';
 
+let copyPlayers = [];
+
 export const onSubmitPlayerName = () => {
   const splitedInput = $playerNameInput.value.split(',');
   if (isNameInputValid(splitedInput)) {
     blackjackGame.getPlayers(splitedInput);
-    getBettingAmount(blackjackGame.players);
+    blackjackGame.players.forEach((player) => copyPlayers.push(player.name));
+    getBettingAmount();
   }
 };
 
-const getBettingAmount = (players) => {
-  players.forEach((player) => {
-    addBettingScreen(player.name);
-    const $button = document.body.querySelector(
-      `#${player.name}-amount > button`,
-    );
-    $button.addEventListener('click', onSubmitAmount);
-  });
+const getBettingAmount = () => {
+  const player = copyPlayers.shift();
+  addBettingScreen(player);
+  const $button = document.body.querySelector(`#${player}-amount > button`);
+  $button.addEventListener('click', onSubmitAmount);
 };
 
 const onSubmitAmount = (e) => {
@@ -27,12 +27,14 @@ const onSubmitAmount = (e) => {
     e.target.removeEventListener('click', onSubmitAmount);
     blackjackGame.betPlayer(e.target.dataset.player, $input.value);
 
-    return checkSubmitAmountFinish(e.target.dataset.player);
+    return checkSubmitAmountFinish();
   }
 };
 
-const checkSubmitAmountFinish = (player) => {
-  if (player === blackjackGame.players[blackjackGame.players.length - 1].name) {
-    blackjackGame.handOutCards();
+const checkSubmitAmountFinish = () => {
+  if (copyPlayers[0] === undefined) {
+    return blackjackGame.handOutCards();
   }
+
+  return getBettingAmount();
 };
