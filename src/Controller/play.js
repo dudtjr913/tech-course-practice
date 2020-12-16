@@ -6,5 +6,6 @@ export const onSubmitPlayerName = () => {
   const splitedInput = $playerNameInput.value.split(',');
   if (isNameInputValid(splitedInput)) {
     blackjackGame.getPlayers(splitedInput);
+    console.log(blackjackGame);
   }
 };
