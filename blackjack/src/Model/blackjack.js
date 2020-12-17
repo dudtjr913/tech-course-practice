@@ -64,10 +64,17 @@ export default class Blackjack {
   }
 
   findWinner() {
+    if (this.dealer.sumOfCards > 21) {
+      return this._dealerLose();
+    }
     this.players.forEach((player) => {
       const result = checkResult(this.dealer.sumOfCards, player.sumOfCards);
       pushProfit(result, player);
     });
+  }
+
+  _dealerLose() {
+    console.log(this.players);
   }
 }
 

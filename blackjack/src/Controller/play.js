@@ -45,7 +45,6 @@ const checkSubmitAmountFinish = () => {
     addHandOutCardScreen(blackjackGame.players, blackjackGame.dealer);
     pushPlayerName(blackjackGame.players);
     blackjackGame.checkPlayerBlackjack();
-    console.log(blackjackGame.players);
     return getPlayerTakingMoreCard();
   }
 
