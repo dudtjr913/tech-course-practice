@@ -20,6 +20,14 @@ export const isAmountValid = (amount) => {
   return true;
 };
 
+export const isAnswerValid = (answer) => {
+  if (!isYOrN(answer)) {
+    return false;
+  }
+
+  return true;
+};
+
 const isWord = (splitedInput) => {
   if (
     splitedInput.some((name) => name.match(/[^a-zA-Z가-힣]/)) ||
@@ -53,6 +61,15 @@ const isMaxLength = (splitedInput) => {
 const isNumber = (amount) => {
   if (amount.match(/\D/) || amount === '') {
     alert('숫자를 입력해주세요.');
+    return false;
+  }
+
+  return true;
+};
+
+const isYOrN = (answer) => {
+  if (!(answer === 'y' || answer === 'n')) {
+    alert('y 또는 n을 입력해주세요.');
     return false;
   }
 

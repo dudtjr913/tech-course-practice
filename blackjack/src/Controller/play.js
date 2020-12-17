@@ -3,8 +3,9 @@ import {
   addBettingScreen,
   addHandOutCardScreen,
   addCheckingMoreCardScreen,
+  addPlayerCardScreen,
 } from '../View/addScreen.js';
-import {isNameInputValid, isAmountValid} from './valid.js';
+import {isNameInputValid, isAmountValid, isAnswerValid} from './valid.js';
 import {blackjackGame} from '../index.js';
 
 let playersName = [];
@@ -66,12 +67,12 @@ const onSubmitTakingMoreCard = (e) => {
 };
 
 const keepPlayingBlackjack = (playerName) => {
-  const playerCards = blackjackGame.players.find(
+  const player = blackjackGame.players.find(
     (player) => player.name === playerName,
-  ).cards;
+  );
 
-  addPlayerCardScreen(playerCards);
-  addCheckingMoreCardScreen(e.target.dataset.takeMoreCard);
+  addPlayerCardScreen(player);
+  addCheckingMoreCardScreen(playerName);
 };
 
 const pushPlayerName = (players) => {

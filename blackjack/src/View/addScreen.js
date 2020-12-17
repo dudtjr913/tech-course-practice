@@ -38,3 +38,11 @@ export const addCheckingMoreCardScreen = (player) => {
   `;
   $blackjackContainer.appendChild($moreCardWrapper);
 };
+
+export const addPlayerCardScreen = (player) => {
+  const $playerCardsWrapper = document.createElement('div');
+  $playerCardsWrapper.innerHTML = `
+    ${player.name}카드: ${player.cards.join(', ')}
+  `;
+  $blackjackContainer.appendChild($playerCardsWrapper);
+};
