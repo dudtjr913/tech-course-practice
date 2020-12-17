@@ -54,3 +54,21 @@ export const addDealerMoreCardScreen = () => {
   `;
   $blackjackContainer.appendChild($dealerMoreCardWrapper);
 };
+
+export const addResultScreen = (players, dealer) => {
+  const $resultWrapper = document.createElement('p');
+  $resultWrapper.innerHTML = `
+    <div>딜러 카드: ${dealer.cards.join(', ')} - 결과: ${dealer.sumOfCards}
+  `;
+  createResultContext($resultWrapper, players);
+  $blackjackContainer.appendChild($resultWrapper);
+};
+
+const createResultContext = ($resultWrapper, players) => {
+  players.forEach((player) => {
+    const {name, cards, sumOfCards} = player;
+    $resultWrapper.innerHTML += `
+    <div>${name}카드: ${cards.join(', ')} - 결과: ${sumOfCards}</div>
+  `;
+  });
+};

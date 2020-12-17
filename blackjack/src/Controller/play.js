@@ -5,6 +5,7 @@ import {
   addCheckingMoreCardScreen,
   addPlayerCardScreen,
   addDealerMoreCardScreen,
+  addResultScreen,
 } from '../View/addScreen.js';
 import {isNameInputValid, isAmountValid, isAnswerValid} from './valid.js';
 import {blackjackGame} from '../index.js';
@@ -101,6 +102,7 @@ const showResult = () => {
   if (blackjackGame.takeDealerMoreCard()) {
     addDealerMoreCardScreen();
   }
+  addResultScreen(blackjackGame.players, blackjackGame.dealer);
 };
 
 const pushPlayerName = (players) => {

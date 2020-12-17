@@ -38,17 +38,18 @@ export default class Blackjack {
 
   pushPlayerCardSumResult(playerName) {
     const nowPlayer = findNowPlayer(this.players, playerName);
-    const sumofCards = sumCards(nowPlayer.cards);
-
-    return (nowPlayer.sumofCards = sumofCards);
+    const sumOfCards = sumCards(nowPlayer.cards);
+    nowPlayer.sumOfCards = sumOfCards;
   }
 
   takeDealerMoreCard() {
-    const sumofCards = sumCards(this.dealer.cards);
-    if (sumofCards <= 16) {
+    const sumOfCards = sumCards(this.dealer.cards);
+    if (sumOfCards <= 16) {
       const oneCard = drawCard(this.cards, 1);
-      return (this.dealer.cards = [...this.dealer.cards, ...oneCard]);
+      this.dealer.cards = [...this.dealer.cards, ...oneCard];
+      return (this.dealer.sumOfCards = sumCards(this.dealer.cards));
     }
+    this.dealer.sumOfCards = sumOfCards;
   }
 
   findResult() {}
