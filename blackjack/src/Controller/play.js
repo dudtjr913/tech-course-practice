@@ -42,13 +42,13 @@ const checkSubmitAmountFinish = () => {
     blackjackGame.handOutCards();
     addHandOutCardScreen(blackjackGame.players, blackjackGame.dealer);
     pushPlayerName(blackjackGame.players);
-    return checkTakingMoreCard();
+    return getPlayerTakingMoreCard();
   }
 
   return getBettingAmount();
 };
 
-const checkTakingMoreCard = () => {
+const getPlayerTakingMoreCard = () => {
   const playerName = playersName.shift();
   addCheckingMoreCardScreen(playerName);
   const $button = document.querySelector(`#${playerName}-more-card > button`);
@@ -59,20 +59,33 @@ const onSubmitTakingMoreCard = (e) => {
   const $input = e.target.previousElementSibling;
   if (isAnswerValid($input.value)) {
     e.target.removeEventListener('click', onSubmitTakingMoreCard);
-    if ($input.value === 'y') {
-      return keepPlayingBlackjack(e.target.dataset.takeMoreCard);
-    }
-    return checkTakingMoreCard();
+    checkTakingMoreCard($input.value, e.target.dataset.takeMoreCard);
   }
 };
 
+const checkTakingMoreCard = (answer, playerName) => {
+  if (answer === 'y') {
+    return keepPlayingBlackjack(playerName);
+  }
+  return checkAllPlayerTurnFinish();
+};
+
 const keepPlayingBlackjack = (playerName) => {
+  blackjackGame.takeMoreCard(playerName);
+
   const player = blackjackGame.players.find(
     (player) => player.name === playerName,
   );
-
   addPlayerCardScreen(player);
   addCheckingMoreCardScreen(playerName);
+};
+
+const checkAllPlayerTurnFinish = () => {
+  if (playersName[0] === undefined) {
+    return blackjackGame.checkDealerCard();
+  }
+
+  return getPlayerTakingMoreCard();
 };
 
 const pushPlayerName = (players) => {

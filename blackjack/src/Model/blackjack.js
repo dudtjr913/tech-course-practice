@@ -30,7 +30,11 @@ export default class Blackjack {
     }
   }
 
-  takeMoreCard(player) {}
+  takeMoreCard(playerName) {}
+
+  checkDealerCard() {
+    console.log('dealer');
+  }
 
   findResult() {}
 
