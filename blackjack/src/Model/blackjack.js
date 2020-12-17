@@ -52,9 +52,12 @@ export default class Blackjack {
     this.dealer.sumOfCards = sumOfCards;
   }
 
-  findResult() {}
-
-  calculateProfit() {}
+  findWinner() {
+    this.players.forEach((player) => {
+      const result = checkResult(this.dealer.sumOfCards, player.sumOfCards);
+      pushProfit(result, player);
+    });
+  }
 }
 
 const drawCard = (cards, count) => {
@@ -114,4 +117,29 @@ const sumAceCard = (cards) => {
   }, 0);
 
   return sumOfAceCards;
+};
+
+const checkResult = (dealerSum, playerSum) => {
+  if (playerSum === dealerSum) {
+    return 'draw';
+  }
+  if (playerSum > dealerSum) {
+    return 'win';
+  }
+
+  return 'lose';
+};
+
+const pushProfit = (result, player) => {
+  if (player.profit) {
+    return;
+  }
+  if (result === 'draw') {
+    return (player.profit = parseInt(player.betting, 10));
+  }
+  if (result === 'win') {
+    return (player.profit = parseInt(player.betting, 10) * 1.5);
+  }
+
+  return (player.profit = -parseInt(player.betting, 10));
 };

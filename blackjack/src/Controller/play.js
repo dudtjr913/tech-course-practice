@@ -103,6 +103,7 @@ const showResult = () => {
     addDealerMoreCardScreen();
   }
   addResultScreen(blackjackGame.players, blackjackGame.dealer);
+  blackjackGame.findWinner();
 };
 
 const pushPlayerName = (players) => {
