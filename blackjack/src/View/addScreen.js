@@ -31,7 +31,7 @@ const createCardContext = ($cardWrapper, players) => {
 
 export const addCheckingMoreCardScreen = (player) => {
   const $moreCardWrapper = document.createElement('p');
-  $moreCardWrapper.id = `${player}-more-card`;
+  $moreCardWrapper.className = `${player}-more-card`;
   $moreCardWrapper.innerHTML = `
     <div>${player}는 한장의 카드를 더 받겠습니까?(예는 y, 아니오는 n)</div>
     <input /> <button data-take-more-card=${player}>제출</button>

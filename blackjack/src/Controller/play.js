@@ -51,7 +51,13 @@ const checkSubmitAmountFinish = () => {
 const getPlayerTakingMoreCard = () => {
   const playerName = playersName.shift();
   addCheckingMoreCardScreen(playerName);
-  const $button = document.querySelector(`#${playerName}-more-card > button`);
+  addTakingMoreCardButtonEvent(playerName);
+};
+
+const addTakingMoreCardButtonEvent = (playerName) => {
+  const $button = document.querySelector(
+    `.${playerName}-more-card:last-child > button`,
+  );
   $button.addEventListener('click', onSubmitTakingMoreCard);
 };
 
@@ -78,6 +84,7 @@ const keepPlayingBlackjack = (playerName) => {
   );
   addPlayerCardScreen(player);
   addCheckingMoreCardScreen(playerName);
+  addTakingMoreCardButtonEvent(playerName);
 };
 
 const checkAllPlayerTurnFinish = () => {
