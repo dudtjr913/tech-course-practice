@@ -30,6 +30,17 @@ export default class Blackjack {
     }
   }
 
+  checkPlayerBlackjack() {
+    this.dealer.sumOfCards = sumCards(this.dealer.cards);
+    this.players.forEach((player) => {
+      this.pushPlayerCardSumResult(player.name);
+      if (player.sumOfCards === 21) {
+        const result = checkResult(this.dealer.sumOfCards, player.sumOfCards);
+        pushProfit(result, player);
+      }
+    });
+  }
+
   takeMoreCard(playerName) {
     const nowPlayer = findNowPlayer(this.players, playerName);
     const oneCard = drawCard(this.cards, 1);
