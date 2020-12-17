@@ -41,13 +41,13 @@ const checkSubmitAmountFinish = () => {
     blackjackGame.handOutCards();
     addHandOutCardScreen(blackjackGame.players, blackjackGame.dealer);
     pushPlayerName(blackjackGame.players);
-    return checktakingMoreCard();
+    return checkTakingMoreCard();
   }
 
   return getBettingAmount();
 };
 
-const checktakingMoreCard = () => {
+const checkTakingMoreCard = () => {
   const playerName = playersName.shift();
   addCheckingMoreCardScreen(playerName);
   const $button = document.querySelector(`#${playerName}-more-card > button`);
@@ -57,11 +57,11 @@ const checktakingMoreCard = () => {
 const onSubmitTakingMoreCard = (e) => {
   const $input = e.target.previousElementSibling;
   if (isAnswerValid($input.value)) {
+    e.target.removeEventListener('click', onSubmitTakingMoreCard);
     if ($input.value === 'y') {
       return keepPlayingBlackjack(e.target.dataset.takeMoreCard);
     }
-    e.target.removeEventListener('click', onSubmitTakingMoreCard);
-    return checktakingMoreCard();
+    return checkTakingMoreCard();
   }
 };
 
