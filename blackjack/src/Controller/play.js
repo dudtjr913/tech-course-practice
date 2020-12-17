@@ -4,6 +4,7 @@ import {
   addHandOutCardScreen,
   addCheckingMoreCardScreen,
   addPlayerCardScreen,
+  addDealerMoreCardScreen,
 } from '../View/addScreen.js';
 import {isNameInputValid, isAmountValid, isAnswerValid} from './valid.js';
 import {blackjackGame} from '../index.js';
@@ -74,7 +75,6 @@ const checkTakingMoreCard = (answer, playerName) => {
     return keepPlayingBlackjack(playerName);
   }
   blackjackGame.pushPlayerCardSumResult(playerName);
-  console.log(blackjackGame.players);
   return checkAllPlayerTurnFinish();
 };
 
@@ -91,10 +91,16 @@ const keepPlayingBlackjack = (playerName) => {
 
 const checkAllPlayerTurnFinish = () => {
   if (playersName[0] === undefined) {
-    return blackjackGame.checkDealerCard();
+    return showResult();
   }
 
   return getPlayerTakingMoreCard();
+};
+
+const showResult = () => {
+  if (blackjackGame.takeDealerMoreCard()) {
+    addDealerMoreCardScreen();
+  }
 };
 
 const pushPlayerName = (players) => {

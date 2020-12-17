@@ -23,7 +23,7 @@ export default class Blackjack {
   }
 
   handOutCards() {
-    this.dealer.cards = drawCard(this.cards);
+    this.dealer.cards = drawCard(this.cards, 2);
 
     for (let i = 0; i < this.players.length; i++) {
       this.players[i].cards = drawCard(this.cards, 2);
@@ -43,8 +43,12 @@ export default class Blackjack {
     return (nowPlayer.sumofCards = sumofCards);
   }
 
-  checkDealerCard() {
-    console.log('dealer');
+  takeDealerMoreCard() {
+    const sumofCards = sumCards(this.dealer.cards);
+    if (sumofCards <= 16) {
+      const oneCard = drawCard(this.cards, 1);
+      return (this.dealer.cards = [...this.dealer.cards, ...oneCard]);
+    }
   }
 
   findResult() {}
