@@ -74,7 +74,7 @@ const checkTakingMoreCard = (answer, playerName) => {
     return keepPlayingBlackjack(playerName);
   }
   blackjackGame.pushPlayerCardSumResult(playerName);
-
+  console.log(blackjackGame.players);
   return checkAllPlayerTurnFinish();
 };
 

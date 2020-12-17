@@ -96,6 +96,7 @@ const sumCards = (cards) => {
   if (convertedCards.includes('A')) {
     return sumAceCard(convertedCards);
   }
+
   return convertedCards.reduce((acc, cur) => acc + cur, 0);
 };
 
@@ -105,7 +106,7 @@ const sumAceCard = (cards) => {
       return acc + cur;
     }
     return acc < 11 ? acc + 11 : acc + 1;
-  });
+  }, 0);
 
   return sumOfAceCards;
 };
