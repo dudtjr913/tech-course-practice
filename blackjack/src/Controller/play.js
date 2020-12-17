@@ -73,6 +73,8 @@ const checkTakingMoreCard = (answer, playerName) => {
   if (answer === 'y') {
     return keepPlayingBlackjack(playerName);
   }
+  blackjackGame.pushPlayerCardSumResult(playerName);
+
   return checkAllPlayerTurnFinish();
 };
 
