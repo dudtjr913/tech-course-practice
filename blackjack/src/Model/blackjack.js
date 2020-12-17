@@ -18,7 +18,7 @@ export default class Blackjack {
   }
 
   betPlayer(playerName, amount) {
-    const nowPlayer = this.players.find((player) => player.name === playerName);
+    const nowPlayer = findNowPlayer(this.players, playerName);
     nowPlayer.betting = amount;
   }
 
@@ -26,11 +26,14 @@ export default class Blackjack {
     this.dealer.cards = drawCard(this.cards);
 
     for (let i = 0; i < this.players.length; i++) {
-      this.players[i].cards = drawCard(this.cards);
+      this.players[i].cards = drawCard(this.cards, 2);
     }
   }
 
-  takeMoreCard(playerName) {}
+  takeMoreCard(playerName) {
+    const nowPlayer = findNowPlayer(this.players, playerName);
+    nowPlayer.cards.push(drawCard(this.cards, 1));
+  }
 
   checkDealerCard() {
     console.log('dealer');
@@ -41,13 +44,19 @@ export default class Blackjack {
   calculateProfit() {}
 }
 
-const drawCard = (cards) => {
+const drawCard = (cards, count) => {
   const drawnCards = [];
-  while (drawnCards.length < 2) {
+  while (drawnCards.length < count) {
     const randomNumber = Math.floor(Math.random() * cards.length);
     const deletedCard = cards.splice(randomNumber, 1);
     drawnCards.push(...deletedCard);
   }
 
   return drawnCards;
+};
+
+const findNowPlayer = (players, playerName) => {
+  const nowPlayer = players.find((player) => player.name === playerName);
+
+  return nowPlayer;
 };
